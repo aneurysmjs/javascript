@@ -1,0 +1,24 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:aneurysmjs/javascript.git",
+  "author": "jero <aneurysmjs@outlook.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "commit": "git-cz",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "devDependencies": {
+    "jest": "26.4.2",
+    "jest-environment-jsdom-sixteen": "1.0.3",
+    "jest-environment-node": "26.3.0",
+    "prettier": "2.1.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  }
+}
