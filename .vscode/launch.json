@@ -7,37 +7,27 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "insertion",
-      "program": "${workspaceFolder}/sorting/insertion.js"
-    },
-    {
-      "type": "node",
-      "request": "launch",
       "name": "Jest test",
       "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
       "args": ["-i"],
       "outFiles": ["${workspaceFolder}/**/**"]
     },
     {
+      // @see https://github.com/microsoft/vscode-recipes/tree/master/debugging-jest-tests
       "type": "node",
       "request": "launch",
       "name": "Jest Current File",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      // "program": "${workspaceFolder}/node_modules/.bin/jest",
       "args": [
-        // "--experimental-vm-modules",
+        // VS Code debug with --experimental-modules flag 
+        // @see https://stackoverflow.com/a/60582503/5378393
+        "--experimental-vm-modules",
+        "${workspaceFolder}/node_modules/.bin/jest",
         "${fileBasenameNoExtension}",
-        // "--config",
-        // "jest.config.js"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true,
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "math",
-      "program": "${workspaceFolder}/recursion/math.js"
     }
   ]
 }
