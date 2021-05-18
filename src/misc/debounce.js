@@ -1,7 +1,7 @@
 /**
- * 
- * @param {(...*) => any)} fn 
- * @param {number} ms 
+ *
+ * @param {(...*) => any)} fn
+ * @param {number} ms
  * @returns {(...args: any[]) => void}
  */
 export default function debounce(fn, ms) {
@@ -9,7 +9,7 @@ export default function debounce(fn, ms) {
 
   return function (...args) {
     /**
-     * if an event happens before the setTimeout has expired. 
+     * if an event happens before the setTimeout has expired.
      * we cancel the setTimeout and reset it, so effectively
      * what this is gonna do, it's to keep reseting the timer
      * as longs as events are ocurring before the timeout has
@@ -20,5 +20,5 @@ export default function debounce(fn, ms) {
     timeoutId = setTimeout(() => {
       fn(args);
     }, ms);
-  }
+  };
 }

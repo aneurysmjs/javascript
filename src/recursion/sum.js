@@ -2,7 +2,7 @@ function add(sum, ...nums) {
   if (nums.length === 0) {
     return sum;
   }
-  const result = sum + add(...nums); 
+  const result = sum + add(...nums);
   debugger;
   return result;
 }

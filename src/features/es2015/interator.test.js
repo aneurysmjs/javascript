@@ -42,7 +42,6 @@ describe('iterator', () => {
     expect(iteratorResult).toStrictEqual({ done: true });
   });
 
-
   it('should throw an exception', () => {
     const exceptionIterator = makeIteratorException();
 
