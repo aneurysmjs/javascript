@@ -8,7 +8,8 @@
   "type": "module",
   "scripts": {
     "commit": "git-cz",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "format": "prettier --write \"src/**/*.js\""
   },
   "devDependencies": {
     "jest": "26.4.2",
