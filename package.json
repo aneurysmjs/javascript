@@ -9,13 +9,16 @@
   "scripts": {
     "commit": "git-cz",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "format": "prettier --write \"src/**/*.js\""
+    "format": "prettier --write \"src/**/*.js\"",
+    "upgrade": "npm-upgrade"
   },
   "devDependencies": {
-    "jest": "26.4.2",
+    "commitizen": "4.2.4",
+    "cz-conventional-changelog": "3.3.0",
+    "jest": "27.2.5",
     "jest-environment-jsdom-sixteen": "1.0.3",
-    "jest-environment-node": "26.3.0",
-    "prettier": "2.1.2"
+    "jest-environment-node": "27.2.5",
+    "prettier": "2.4.1"
   },
   "config": {
     "commitizen": {
