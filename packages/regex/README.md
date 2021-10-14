@@ -1,4 +1,9 @@
-// match a set of strings
+# `regex`
+
+> playground with regular expressions
+
+```
+c// match a set of strings
 /**
  * /pattern(what to match)/flags (the combinations of g, i, m, y, u, s)
  *
@@ -18,3 +23,4 @@
 
   // '.' matches everything except line breaks
 })();
+```

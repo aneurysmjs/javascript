@@ -4,7 +4,8 @@
   "description": "playground with regular expressions",
   "keywords": [],
   "author": "aneurysm <aneurysmjs@outlook.com>",
-  "license": "ISC",
+  "license": "MIT",
+  "type": "module",
   "main": "lib/regex.js",
   "directories": {
     "lib": "lib",

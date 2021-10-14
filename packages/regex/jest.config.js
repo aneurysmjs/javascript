@@ -1,7 +1,7 @@
 // Jest configuration for api
-const base = require('../../jest.config.base.js');
+import base from '../../jest.config.base.js';
 
-module.exports = {
+export default {
   ...base,
   name: 'regex',
   displayName: 'regex',
