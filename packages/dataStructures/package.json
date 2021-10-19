@@ -1,0 +1,27 @@
+{
+  "name": "data-structures",
+  "version": "0.0.0",
+  "description": "playground for data structures",
+  "keywords": [],
+  "author": "aneurysm <aneurysmjs@outlook.com>",
+  "license": "MIT",
+  "type": "module",
+  "directories": {
+    "src": "src",
+    "test": "__tests__"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aneurysmjs/javascript.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/aneurysmjs/javascript/issues"
+  },
+  "homepage": "https://github.com/aneurysmjs/javascript#readme"
+}
