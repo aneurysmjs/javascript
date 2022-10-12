@@ -1,25 +1,17 @@
 {
   "name": "theory",
   "version": "0.0.0",
-  "description": "bunch oof Javascript theory",
+  "description": "bunch of Javascript theory",
   "keywords": [],
   "author": "aneurysm <aneurysmjs@outlook.com>",
   "license": "ISC",
   "type": "module",
-  "main": "lib/theory.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aneurysmjs/javascript.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "yarn run -T test -c=\"$INIT_CWD/jest.config.mjs\""
   },
   "bugs": {
     "url": "https://github.com/aneurysmjs/javascript/issues"

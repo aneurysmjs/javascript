@@ -1,4 +1,4 @@
-import sum from '../../src/recursion/sum';
+import sum from './sum';
 
 describe('sum', () => {
   it('sum number', () => {

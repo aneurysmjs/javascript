@@ -1,4 +1,4 @@
-import swapProp from '../../src/objects/swapProp';
+import swapProp from './swapProp';
 
 describe('swapProp', () => {
   it('should swap a property with given keys', () => {

@@ -18,7 +18,7 @@
     "url": "git+https://github.com/aneurysmjs/javascript.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "yarn run -T test -c=\"$INIT_CWD/jest.config.mjs\""
   },
   "bugs": {
     "url": "https://github.com/aneurysmjs/javascript/issues"

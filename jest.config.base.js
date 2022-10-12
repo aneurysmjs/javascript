@@ -1,10 +1,10 @@
 export default {
-  collectCoverage: true,
-  coveragePathIgnorePatterns: ['(__tests__/.*.mock).(js|mjs)$'],
   moduleFileExtensions: ['js', 'mjs'],
-  roots: ['<rootDir>/src', '<rootDir>/__tests__'],
   testEnvironment: 'jest-environment-node',
-  testRegex: '(/__tests__/.*.(test|spec)).(js|mjs)$',
+  testMatch: [
+    '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs,ts,tsx}',
+    '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs,ts,tsx}',
+  ],
   transform: {},
   verbose: true,
 };
