@@ -1,4 +1,4 @@
-import breakCamelCase from '../src/breakCamelCase';
+import breakCamelCase from '../src/breakCamelCase.mjs';
 
 describe('breakCamelCase', () => {
   it('breaks up camel casing, using a space between words', () => {

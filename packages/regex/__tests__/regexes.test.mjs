@@ -1,4 +1,4 @@
-import { cssValue, uIntString } from '../src/regexes';
+import { cssValue, uIntString } from '../src/regexes.mjs';
 
 it('css value', () => {
   expect('30px').toMatch(cssValue);
