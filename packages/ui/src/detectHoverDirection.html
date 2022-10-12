@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detect hover direction</title>
+
+    <style>
+      h2 {
+        font-size: 14px;
+        font-weight: bold;
+      }
+      #content {
+        position: absolute;
+        left: 100px;
+        top: 100px;
+      }
+      #directionsLog {
+        position: absolute;
+        left: 450px;
+        top: 100px;
+        width: 200px;
+        background: #eeeeee;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <img
+        src="http://25.media.tumblr.com/tumblr_ln778ig1qC1qeewzyo1_1280.gif"
+        height="300"
+        width="300"
+      />
+    </div>
+    <div id="directionsLog">
+      <h2>Console</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="module" src="detectHoveDirection.js"></script>
+  </body>
+</html>
