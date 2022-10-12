@@ -1,8 +1,8 @@
 export default {
   testEnvironment: 'jest-environment-node',
   testMatch: [
-    '<rootDir>/__tests__/**/*.{js,jsx,mjs,ts,tsx}',
-    '<rootDir>/**/?(*.)(spec|test).{js,jsx,mjs,ts,tsx}',
+    '<rootDir>/__tests__/**/*.{js,jsx,mjs,mts,ts,tsx}',
+    '<rootDir>/**/?(*.)(spec|test).{js,jsx,mjs,mts,ts,tsx}',
   ],
   transform: {},
   verbose: true,

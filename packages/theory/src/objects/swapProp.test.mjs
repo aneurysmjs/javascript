@@ -1,3 +1,4 @@
+// @ts-nocheck
 import swapProp from './swapProp.mjs';
 
 describe('swapProp', () => {
@@ -12,11 +13,6 @@ describe('swapProp', () => {
       id: 2,
       name: 'matthias',
       order: 1,
-    };
-
-    const state = {
-      1: obj1,
-      2: obj2,
     };
 
     const result1 = {

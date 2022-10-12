@@ -1,3 +1,4 @@
+// @ts-nocheck
 import sum from './sum.mjs';
 
 describe('sum', () => {
