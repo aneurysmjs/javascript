@@ -3600,6 +3600,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"compilers@workspace:packages/compilers":
+  version: 0.0.0-use.local
+  resolution: "compilers@workspace:packages/compilers"
+  languageName: unknown
+  linkType: soft
+
 "concat-map@npm:0.0.1":
   version: 0.0.1
   resolution: "concat-map@npm:0.0.1"
@@ -8778,12 +8784,6 @@ __metadata:
   checksum: f76fa01b3d5be85db6a2a143e24df9f60dd047d151062d0ba3df62953f2f697b16fe5dad9b0ac6191c7efc7b1d9dcaa4b768174b7b29da89d4428e64bc0a20ed
   languageName: node
   linkType: hard
-
-"topic@workspace:packages/topics":
-  version: 0.0.0-use.local
-  resolution: "topic@workspace:packages/topics"
-  languageName: unknown
-  linkType: soft
 
 "tough-cookie@npm:^4.0.0":
   version: 4.0.0
