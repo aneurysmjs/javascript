@@ -1,7 +1,7 @@
-const product = {
+export const product = reactive({
   price: 5,
   quantity: 2,
-};
+});
 
 let total = 0;
 
@@ -22,27 +22,34 @@ type Dep = Set<() => void>;
 const depsMap = new Map<PropertyKey, Dep>();
 type DepsMap = typeof depsMap;
 
-const effect = () => {
-  total = product.price * product.quantity;
+let activeEffect: (() => void) | null = null; // The active effect running
+
+const effect = (eff: () => void) => {
+  activeEffect = eff;
+  activeEffect();
+  activeEffect = null;
 };
 
 const track = <T extends Record<PropertyKey, any>>(target: T, key: keyof T) => {
-  let depsMap = targetMap.get(target);
+  if (activeEffect) {
+    let depsMap = targetMap.get(target);
 
-  if (!depsMap) {
-    targetMap.set(target, (depsMap = new Map<keyof T, Dep>()));
+    if (!depsMap) {
+      targetMap.set(target, (depsMap = new Map<keyof T, Dep>()));
+    }
+
+    /**
+     * a `dep` is a dependency which is a set of effects that should get re-run
+     * after when values change.
+     */
+    let dep = depsMap.get(key); // get the `dep` for this property
+
+    if (!dep) {
+      depsMap.set(key, (dep = new Set())); // not `dep` yet, create one
+    }
+
+    dep.add(activeEffect);
   }
-
-  /**
-   * a `dep` is a dependency which is a set of effects that should get re-run
-   * after when values change.
-   */
-  let dep = depsMap.get(key); // get the `dep` for this property
-
-  if (!dep) {
-    depsMap.set(key, (dep = new Set())); // not `dep` yet, create one
-  }
-  dep.add(effect);
 };
 
 const trigger = <T extends Record<PropertyKey, any>>(target: T, key: keyof T) => {
@@ -59,6 +66,16 @@ const trigger = <T extends Record<PropertyKey, any>>(target: T, key: keyof T) =>
   }
 };
 
+effect(() => {
+  total = product.price * product.quantity;
+});
+
+console.log('total', total);
+
+product.quantity = 3;
+
+console.log('total', total);
+
 export default function reactive<T extends Record<PropertyKey, any>>(obj: T) {
   return new Proxy(obj, {
     /**
@@ -72,6 +89,10 @@ export default function reactive<T extends Record<PropertyKey, any>>(obj: T) {
     get(target, key, receiver) {
       const result = Reflect.get(target, key, receiver);
 
+      /**
+       * Note: track gets called when we GET a property on our reactive object, even when
+       * we're not in an effect.
+       */
       track(target, key);
 
       return result;
@@ -81,7 +102,9 @@ export default function reactive<T extends Record<PropertyKey, any>>(obj: T) {
       const oldValue = target[key];
       const result = Reflect.set(target, key, value, receiver);
 
-      trigger(target, key);
+      if (oldValue != result) {
+        trigger(target, key);
+      }
 
       return result;
     },
