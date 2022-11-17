@@ -1,9 +1,19 @@
-export default function tokenizer(input: string) {
+import type { Token } from './types/types.mjs';
+
+/**
+ *  lexical analysis with tokenizer.
+ *
+ * We're just going to take our string of code and break it down into an array
+ * of tokens.
+ *
+ *   (add 2 (subtract 4 2))   =>   [{ type: 'paren', value: '(' }, ...]
+ */
+export default function tokenizer(input: string): Token[] {
   // A `current` variable for tracking our position in the code like a cursor.
   let current = 0;
 
   // And a `tokens` array for pushing our tokens to.
-  let tokens = [];
+  const tokens: Token[] = [];
 
   // We start by creating a `while` loop where we are setting up our `current`
   // variable to be incremented as much as we want `inside` the loop.
@@ -28,7 +38,8 @@ export default function tokenizer(input: string) {
       });
 
       // Then we increment `current`
-      current++;
+      // current++;
+      current += 1;
 
       // And we `continue` onto the next cycle of the loop.
       continue;
@@ -42,7 +53,8 @@ export default function tokenizer(input: string) {
         type: 'paren',
         value: ')',
       });
-      current++;
+      // current++;
+      current += 1;
       continue;
     }
 
@@ -53,7 +65,7 @@ export default function tokenizer(input: string) {
     //
     // So here we're just going to test for existence and if it does exist we're
     // going to just `continue` on.
-    let WHITESPACE = /\s/;
+    const WHITESPACE = /\s/;
     if (char && WHITESPACE.test(char)) {
       current++;
       continue;
@@ -68,7 +80,7 @@ export default function tokenizer(input: string) {
     //        Only two separate tokens
     //
     // So we start this off when we encounter the first number in a sequence.
-    let NUMBERS = /[0-9]/;
+    const NUMBERS = /[0-9]/;
     if (char && NUMBERS.test(char)) {
       // We're going to create a `value` string that we are going to push
       // characters to.
@@ -119,6 +131,36 @@ export default function tokenizer(input: string) {
       continue;
     }
 
+    // We'll also add support for strings in our language which will be any
+    // text surrounded by single quotes (').
+    //
+    //   (concat 'foo' 'bar')
+    //            ^^^   ^^^ string tokens
+    //
+    // We'll start by checking for the opening quote:
+    if (char === "'") {
+      // Keep a `value` variable for building up our string token.
+      let value = '';
+
+      // We'll skip the opening double quote in our token.
+      char = input[++current];
+
+      // Then we'll iterate through each character until we reach another
+      // double quote.
+      while (char !== "'") {
+        value += char;
+        char = input[++current];
+      }
+
+      // Skip the closing double quote.
+      char = input[++current];
+
+      // And add our `string` token to the `tokens` array.
+      tokens.push({ type: 'string', value });
+
+      continue;
+    }
+
     // The last type of token will be a `name` token. This is a sequence of
     // letters instead of numbers, that are the names of functions in our lisp
     // syntax.
@@ -127,7 +169,7 @@ export default function tokenizer(input: string) {
     //    ^^^
     //    Name token
     //
-    let LETTERS = /[a-z]/i;
+    const LETTERS = /[a-z]/i;
     if (char && LETTERS.test(char)) {
       let value = '';
 
@@ -138,7 +180,7 @@ export default function tokenizer(input: string) {
         char = input[++current];
       }
 
-      // And pushing that value as a token with the type `name` and continuing.
+      // And pushing that value as a tken with the type `name` and continuing.
       tokens.push({ type: 'name', value });
 
       continue;
