@@ -26,8 +26,7 @@
         "${fileBasenameNoExtension}",
       ],
       "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
+      "internalConsoleOptions": "neverOpen"
     }
   ]
 }
