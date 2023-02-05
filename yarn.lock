@@ -3084,6 +3084,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.3.2":
+  version: 1.3.2
+  resolution: "axios@npm:1.3.2"
+  dependencies:
+    follow-redirects: ^1.15.0
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: 9791af75a6df137b15ef45d13ad11eb357b3860d2496347ee18778db9d0abc2320362a4452f1e070e3160f1dbcc518fcefdc9e005be097e7db39acb22cf608e5
+  languageName: node
+  linkType: hard
+
 "babel-jest@npm:^29.1.2":
   version: 29.1.2
   resolution: "babel-jest@npm:29.1.2"
@@ -7272,6 +7283,14 @@ __metadata:
   checksum: f1fdeac0b07cf8f30fcf12f4b586795b97be856edea22b5e9072707be51fc95d41487faec3f265b42973a304fe3a64acd91a44a3826a963e37b37bafde0212c3
   languageName: node
   linkType: hard
+
+"misc@workspace:packages/misc":
+  version: 0.0.0-use.local
+  resolution: "misc@workspace:packages/misc"
+  dependencies:
+    axios: ^1.3.2
+  languageName: unknown
+  linkType: soft
 
 "mkdirp-infer-owner@npm:^2.0.0":
   version: 2.0.0

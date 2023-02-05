@@ -6,6 +6,6 @@
  * @param {T} el Element to be inserted
  * @returns {Array<T>}
  */
-export default function insertAt(arr, index, el) {
+export default function insertAt<T>(arr: T[], index: number, el: T) {
   return [...arr.slice(0, index), el, ...arr.slice(index)];
 }

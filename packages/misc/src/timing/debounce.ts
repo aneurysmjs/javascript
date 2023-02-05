@@ -4,8 +4,11 @@
  * @param {number} ms
  * @returns {(...args: any[]) => void}
  */
-export default function debounce(fn, ms) {
-  let timeoutId;
+export default function debounce<T extends (...args: any[]) => any>(
+  fn: T,
+  ms: number,
+): (...args: Parameters<T>) => void {
+  let timeoutId: NodeJS.Timeout;
 
   return function (...args) {
     /**

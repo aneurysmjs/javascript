@@ -2,10 +2,10 @@
  * @template T
  *
  * @param {Set<T>} set1
- * @param {Set<t>} set2
+ * @param {Set<T>} set2
  * @returns boolean
  */
-export default function equalSets(set1, set2) {
+export default function equalSets<T>(set1: Set<T>, set2: Set<T>) {
   if (!(set1.size === set2.size)) {
     return false;
   }
