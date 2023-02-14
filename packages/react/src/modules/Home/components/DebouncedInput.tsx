@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import debounce from 'lodash.debounce';
 

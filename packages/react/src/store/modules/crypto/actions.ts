@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import * as cryptoService from '@/services/cryptoService';
-import { ApiMetaType } from '@/shared/types';
+import type { ApiMetaType } from '@/shared/types';
 import { ASYNC_ACTION_TYPE } from '@/constants';
 import { GET_CRYPTO_INFO_REQUEST, GET_CRYPTO_INFO_SUCCESS, GET_CRYPTO_INFO_FAILURE } from './types';
 

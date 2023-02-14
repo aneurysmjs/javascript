@@ -5,9 +5,7 @@ import { useContext, createContext, Provider } from 'react';
 
 type MakeGenericContext<T> = readonly [() => T, Provider<T | undefined>];
 
-const makeGenericContext = <T extends unknown>(
-  contextName = 'makeGenericContext',
-): MakeGenericContext<T> => {
+const makeGenericContext = <T,>(contextName = 'makeGenericContext'): MakeGenericContext<T> => {
   // Create a context with a generic parameter or undefined
   const GenericContext = createContext<T | undefined>(undefined);
 

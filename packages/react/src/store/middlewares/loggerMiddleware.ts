@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Middleware } from 'redux';
+import type { Middleware } from 'redux';
 
 const logger: Middleware = (store) => (next) => (action) => {
   if (!console.group) {

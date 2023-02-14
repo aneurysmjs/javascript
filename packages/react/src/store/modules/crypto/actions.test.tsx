@@ -3,7 +3,7 @@
  */
 import { renderHook } from '@testing-library/react';
 import { expect, it, jest } from '@jest/globals';
-import * as mockReactRedux from 'react-redux';
+import type mockReactRedux from 'react-redux';
 
 import Wrapper from '@/store/helpers/Wrapper';
 import { useCryptoActions } from './actions';

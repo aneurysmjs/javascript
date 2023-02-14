@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react';
+import { type FunctionComponent, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 

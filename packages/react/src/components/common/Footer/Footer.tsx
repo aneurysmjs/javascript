@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 const Footer: FunctionComponent = () => (
   <footer className="container-fluid pt-4 border-top text-center">

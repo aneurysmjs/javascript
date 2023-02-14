@@ -1,9 +1,9 @@
 /* eslint-disable consistent-return */
 import type { Middleware } from 'redux';
 import type { AxiosResponse } from 'axios';
-import type { RootState } from '@/store';
 
-import { ApiMetaType } from '@/shared/types';
+import type { RootState } from '@/store';
+import type { ApiMetaType } from '@/shared/types';
 
 const apiMiddleware: Middleware =
   ({ dispatch, getState }) =>
@@ -23,6 +23,7 @@ const apiMiddleware: Middleware =
     const { payload = {} } = action;
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // @ts-ignore
     const { types, callAPI, shouldCallAPI = (state: RootState): boolean => true } = meta;
 
     if (
