@@ -1,0 +1,22 @@
+// extra small $xs: 0;
+// small       $sm: 576px;
+// medium      $md: 768px;
+// large       $lg: 992px;
+// extra large $xl: 1200px;
+
+.home-title {
+  color: red;
+  text-align: center;
+
+  @media (min-width: 576px) {
+    color: blue;
+  }
+
+  @media (min-width: 768px) {
+    color: green;
+  }
+
+  @media (min-width: 992px) {
+    color: white;
+  }
+}
