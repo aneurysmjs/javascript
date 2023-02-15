@@ -1,4 +1,4 @@
-import type  { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 import Navigation from '@/components/common/Navigation';
 
 const Header: FunctionComponent = () => (

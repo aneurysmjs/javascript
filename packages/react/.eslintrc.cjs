@@ -7,8 +7,6 @@ module.exports = {
     'airbnb-base',
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
-    // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
-    // "prettier/@typescript-eslint",
     'plugin:jsx-a11y/recommended',
     'plugin:import/errors',
     'plugin:import/warnings',
@@ -27,6 +25,7 @@ module.exports = {
     'import/resolver': {
       // use <root>/tsconfig.json
       typescript: {
+        project: [path.join(__dirname, 'tsconfig.json')],
         alwaysTryTypes: true, // always try to resolve types under `<roo/>@types` directory even it doesn't contain any source code, like `@types/unist`
       },
     },
