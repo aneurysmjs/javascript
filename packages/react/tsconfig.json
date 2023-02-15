@@ -1,28 +1,28 @@
 {
+
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "declaration": true,
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "lib": ["es6", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": false,
+    "noUnusedLocals": true,
+    "outDir": "build/dist",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "outDir": "build/dist",
-    "module": "esnext",
-    "target": "es5",
-    "types": ["jest", "node", "@types/jest", "@types/testing-library__jest-dom"],
-    "lib": ["es6", "dom"],
-    "downlevelIteration": true,
     "sourceMap": true,
-    "jsx": "react-jsx",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
+    "strict": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "declaration": true,
-    "strict": true
+    "target": "es5",
+    "types": ["@types/testing-library__jest-dom"]
   },
   "exclude": ["node_modules", "build", "jest"]
 }

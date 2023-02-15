@@ -1,5 +1,5 @@
-
-module.exports = {
+export default {
+  displayName: 'react',
   verbose: true,
   collectCoverageFrom: ['src/**/*.{js,jsx,mjs,ts,tsx}'],
   // A list of paths to modules that run some code to configure
