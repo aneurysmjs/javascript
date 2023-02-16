@@ -1,4 +1,4 @@
-import { compose, pipe } from './utils';
+import compose from './compose';
 
 describe('Composes', () => {
   it('composes functions', () => {
