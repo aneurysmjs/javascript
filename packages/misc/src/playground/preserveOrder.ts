@@ -1,6 +1,10 @@
-import insertAt from '../../misc/insertAt';
+import insertAt from './insertAt';
 
-const sortByOrder = (obj1, obj2) => (obj1.order > obj2.order ? 1 : -1);
+interface Orderable {
+  order: number;
+}
+
+const sortByOrder = <T extends Orderable>(obj1: T, obj2: T) => (obj1.order > obj2.order ? 1 : -1);
 
 /**
  * Inserts a copy of an element from a given array but it ensures that the
@@ -11,7 +15,7 @@ const sortByOrder = (obj1, obj2) => (obj1.order > obj2.order ? 1 : -1);
  * @param {T} copy Element's copy
  * @returns {Array<T>}
  */
-export default function preserveOrder(arr, copy) {
+export default function preserveOrder<T extends Orderable>(arr: T[], copy: T) {
   // clone each element, cuz objects get mutated by reference.
   // the Array.sort function will mutate your array
   // So the simplest way of getting a new sorted array is to make a copy, then sort it.
@@ -22,7 +26,7 @@ export default function preserveOrder(arr, copy) {
   const inserted = insertAt(sorted, index, copy);
 
   for (let i = index + 1; i < inserted.length; i += 1) {
-    inserted[i].order += 1;
+    (inserted[i] as Orderable).order += 1;
   }
 
   return inserted;
