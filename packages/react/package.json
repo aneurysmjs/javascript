@@ -10,7 +10,8 @@
     "url": "git+https://github.com/aneurysmjs/javascript.git"
   },
   "scripts": {
-    "start": "vite"
+    "start": "vite",
+    "test": "pnpm -w test -- -c=\"${INIT_CWD}/packages/react/jest.config.mjs\""
   },
   "bugs": {
     "url": "https://github.com/aneurysmjs/javascript/issues"
