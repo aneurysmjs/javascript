@@ -1,0 +1,19 @@
+{
+  "name": "es-features",
+  "version": "0.0.0",
+  "description": "playground with ecmascript features",
+  "keywords": [],
+  "author": "aneurysm <aneurysmjs@outlook.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aneurysmjs/javascript.git"
+  },
+  "scripts": {
+    "test": "pnpm -w t -- -c=\"${INIT_CWD}/packages/es-features/jest.config.mjs\""
+  },
+  "bugs": {
+    "url": "https://github.com/aneurysmjs/javascript/issues"
+  },
+  "homepage": "https://github.com/aneurysmjs/javascript#readme"
+}
