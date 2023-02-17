@@ -1,0 +1,19 @@
+{
+  "name": "algorithms",
+  "version": "0.0.0",
+  "description": "playground with algorithms",
+  "keywords": [],
+  "author": "aneurysm <aneurysmjs@outlook.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aneurysmjs/javascript.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/aneurysmjs/javascript/issues"
+  },
+  "homepage": "https://github.com/aneurysmjs/javascript#readme"
+}
