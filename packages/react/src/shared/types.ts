@@ -6,8 +6,8 @@ export interface Action<P> {
 }
 
 export interface ApiMetaType {
-  types?: Array<string>;
-  callAPI?: () => Promise<any>;
+  types?: [`${string}REQUEST`, `${string}SUCCESS`, `${string}FAILURE`];
+  callAPI?: () => Promise<unknown>;
   shouldCallAPI?: (S: RootState) => boolean;
 }
 

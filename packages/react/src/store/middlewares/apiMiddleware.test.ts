@@ -43,7 +43,7 @@ afterEach(() => {
   mockAxios.mockReset();
 });
 
-describe('api middleware', () => {
+describe('apiMiddleware', () => {
   it('must return a function to handle next', () => {
     expect(nextHandler).toBeInstanceOf(Function);
     expect(nextHandler.length).toEqual(1);
@@ -82,7 +82,7 @@ describe('api middleware', () => {
 
         expect(() => {
           actionHandler(actionObj);
-        }).toThrowError('Expected an array of three string types.');
+        }).toThrow('Expected an array of three string types.');
       });
 
       it("should throw when there's no 'callAPI' property", () => {
@@ -96,7 +96,7 @@ describe('api middleware', () => {
 
         expect(() => {
           actionHandler(actionObj);
-        }).toThrowError('Expected callAPI to be a function.');
+        }).toThrow('Expected callAPI to be a function.');
       });
 
       it("should 'success' the API call", async () => {

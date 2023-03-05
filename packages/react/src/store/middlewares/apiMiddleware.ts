@@ -23,8 +23,7 @@ const apiMiddleware: Middleware =
     const { payload = {} } = action;
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // @ts-ignore
-    const { types, callAPI, shouldCallAPI = (state: RootState): boolean => true } = meta;
+    const { types, callAPI, shouldCallAPI = (_: RootState): boolean => true } = meta;
 
     if (
       !Array.isArray(types) ||
