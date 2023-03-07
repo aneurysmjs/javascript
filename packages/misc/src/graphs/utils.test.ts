@@ -20,18 +20,22 @@ const dummyGraph: BaseGraph = {
   ],
 };
 
-const dummyAdjecencyList = [
+const dummyAdjecencyList = new Map<number, number[]>([
   [1, [2, 3]],
   [2, []],
   [3, []],
-] as const;
+]);
 
 describe('graph-utils', () => {
   describe('fromGraphtoAdjancencyList', () => {
     it('converts a json graph to and adjancency list', () => {
-      const expectedAdjecencyList = new Map<number, number[]>(dummyAdjecencyList);
+      expect(fromGraphtoAdjancencyList(dummyGraph)).toStrictEqual(dummyAdjecencyList);
+    });
+  });
 
-      expect(fromGraphtoAdjancencyList(dummyGraph)).toStrictEqual(expectedAdjecencyList);
+  describe('fromGraphtoAdjancencyList', () => {
+    it('converts a json adjancency list to a graph', () => {
+      expect(fromAdjancencyListToGraph(dummyAdjecencyList)).toStrictEqual(dummyGraph);
     });
   });
 });

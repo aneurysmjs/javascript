@@ -17,3 +17,22 @@ export const fromGraphtoAdjancencyList = (graph: BaseGraph): AdjancencyList => {
 
   return adjancencyList;
 };
+
+export const fromAdjancencyListToGraph = (adjancencyList: AdjancencyList): BaseGraph => {
+  const graph: BaseGraph = {
+    nodes: [],
+    edges: [],
+  };
+
+  for (const [id, targets] of adjancencyList.entries()) {
+    graph.nodes.push({ id, label: `node ${id}` });
+
+    if (targets.length) {
+      targets.forEach((target) => {
+        graph.edges.push({ source: id, target });
+      });
+    }
+  }
+
+  return graph;
+};
