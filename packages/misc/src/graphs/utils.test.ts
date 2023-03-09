@@ -1,4 +1,10 @@
-import { fromGraphtoAdjancencyList, fromAdjancencyListToGraph } from './utils';
+import fs from 'node:fs';
+import path from 'node:path';
+import {
+  fromGraphtoAdjancencyList,
+  fromAdjancencyListToGraph,
+  fromKeydNodeGraphtoAdjancencyList,
+} from './utils';
 
 import type { BaseGraph } from './types';
 
@@ -26,6 +32,10 @@ const dummyAdjecencyList = new Map<number, number[]>([
   [3, []],
 ]);
 
+const flightsGraph = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, './flights.json'), 'utf-8'),
+);
+
 describe('graph-utils', () => {
   describe('fromGraphtoAdjancencyList', () => {
     it('converts a json graph to and adjancency list', () => {
@@ -36,6 +46,22 @@ describe('graph-utils', () => {
   describe('fromGraphtoAdjancencyList', () => {
     it('converts a json adjancency list to a graph', () => {
       expect(fromAdjancencyListToGraph(dummyAdjecencyList)).toStrictEqual(dummyGraph);
+    });
+  });
+
+  describe('fromKeydNodeGraphtoAdjancencyList', () => {
+    it('converts a json adjancency list to a graph', () => {
+      const list = new Map<string, string[]>([
+        ['ATL', ['LAX', 'ORD', 'DFW']],
+        ['LAX', ['JFK', 'DEN']],
+        ['ORD', ['JFK', 'DEN']],
+        ['DFW', ['SFO', 'LAS']],
+        ['JFK', []],
+        ['DEN', []],
+        ['SFO', []],
+        ['LAS', []],
+      ]);
+      expect(fromKeydNodeGraphtoAdjancencyList(flightsGraph)).toStrictEqual(list);
     });
   });
 });

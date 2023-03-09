@@ -1,0 +1,23 @@
+{
+  "nodes": {
+    "ATL": { "name": "Atlanta" },
+    "LAX": { "name": "Los Angeles" },
+    "ORD": { "name": "Chicago" },
+    "DFW": { "name": "Dallas-Fort Worth" },
+    "JFK": { "name": "New York" },
+    "DEN": { "name": "Denver" },
+    "SFO": { "name": "San Francisco" },
+    "LAS": { "name": "Las Vegas" }
+  },
+  "edges": [
+    { "source": "ATL", "target": "LAX", "distance": 1946, "airline": "Delta" },
+    { "source": "ATL", "target": "ORD", "distance": 606, "airline": "American" },
+    { "source": "ATL", "target": "DFW", "distance": 731, "airline": "Delta" },
+    { "source": "LAX", "target": "JFK", "distance": 3946, "airline": "American" },
+    { "source": "LAX", "target": "DEN", "distance": 860, "airline": "United" },
+    { "source": "ORD", "target": "JFK", "distance": 740, "airline": "American" },
+    { "source": "ORD", "target": "DEN", "distance": 888, "airline": "United" },
+    { "source": "DFW", "target": "SFO", "distance": 1464, "airline": "American" },
+    { "source": "DFW", "target": "LAS", "distance": 1055, "airline": "Southwest" }
+  ]
+}
