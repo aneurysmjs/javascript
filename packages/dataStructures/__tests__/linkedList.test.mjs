@@ -8,6 +8,7 @@ import {
   findTarget,
   getNodeValueAtIndex,
   createLinkedList,
+  prettyPrint,
 } from '../src/linkedList.mjs';
 
 const user = {
@@ -74,18 +75,41 @@ describe('linkedList', () => {
   });
 
   describe('getNodeValueAtIndex', () => {
-    it('gets a node at giiven index', () => {
+    it('gets a node at given index', () => {
       const d = createNode('D');
       const c = createNode('C', d);
       const b = createNode('B', c);
       const a = createNode('A', b);
 
-      const result = createLinkedList(['a', 'b', 'c', 'd']);
-
-      console.log('result', result);
-
       expect(getNodeValueAtIndex(a, 2)).toBe('C');
       expect(getNodeValueAtIndex(a, 5)).toBe(null);
+    });
+  });
+
+  describe('createLinkedList', () => {
+    it('creates a linked list from a string array', () => {
+      const result = createLinkedList(['a', 'b', 'c', 'd']);
+
+      expect(result).toStrictEqual({
+        value: 'a',
+        next: {
+          value: 'b',
+          next: {
+            value: 'c',
+            next: {
+              value: 'd',
+              next: undefined,
+            },
+          },
+        },
+      });
+    });
+  });
+
+  describe('prettyPrint', () => {
+    it('pretty prints a linked list in the form "value -> nextValue -> ..."', () => {
+      const result = createLinkedList(['a', 'b', 'c', 'd']);
+      expect(prettyPrint(result)).toBe('a -> b -> c -> d');
     });
   });
 });

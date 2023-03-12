@@ -181,3 +181,41 @@ export const createLinkedList = (values) => {
 
   return buildList(0);
 };
+
+export const prettyPrintIter = (linkedList) => {
+  let current = linkedList;
+
+  let result = '';
+
+  while (current != null) {
+    result += `${current.value} -> `;
+    current = current.next;
+  }
+
+  if (result.endsWith(' -> ')) {
+    result = result.replace(/\s->\s$/g, '');
+  }
+
+  return result;
+};
+
+export const prettyPrint = (linkedList) => {
+  let result = '';
+
+  const helper = (node) => {
+    if (node == null) {
+      return result;
+    }
+    result += `${node.value} -> `;
+
+    helper(node.next);
+  };
+
+  helper(linkedList);
+
+  if (result.endsWith(' -> ')) {
+    result = result.replace(/\s->\s$/g, '');
+  }
+
+  return result;
+};
