@@ -219,3 +219,31 @@ export const prettyPrint = (linkedList) => {
 
   return result;
 };
+
+export const insertNodeAtEndIter = (linkedList, value) => {
+  let current = linkedList;
+
+  while (current.next) {
+    current = current.next;
+  }
+
+  current.next = createNode(value);
+
+  return linkedList;
+};
+
+export const insertNodeAtEnd = (linkedList, value) => {
+  const helper = (node) => {
+    if (node.next == null) {
+      return node;
+    }
+
+    return helper(node.next);
+  };
+
+  const lastNode = helper(linkedList);
+
+  lastNode.next = createNode(value);
+
+  return linkedList;
+};

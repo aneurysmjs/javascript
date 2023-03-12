@@ -9,12 +9,8 @@ import {
   getNodeValueAtIndex,
   createLinkedList,
   prettyPrint,
+  insertNodeAtEnd,
 } from '../src/linkedList.mjs';
-
-const user = {
-  name: 'Miro',
-  special: 'Flash grenade',
-};
 
 describe('linkedList', () => {
   describe('createNode', () => {
@@ -110,6 +106,14 @@ describe('linkedList', () => {
     it('pretty prints a linked list in the form "value -> nextValue -> ..."', () => {
       const result = createLinkedList(['a', 'b', 'c', 'd']);
       expect(prettyPrint(result)).toBe('a -> b -> c -> d');
+    });
+  });
+
+  describe('insertNodeAtEnd', () => {
+    it('inserts a new node at the end of the linked list', () => {
+      const linkedList = createLinkedList(['a', 'b', 'c', 'd']);
+      const result = insertNodeAtEnd(linkedList, 'e');
+      expect(prettyPrint(result)).toBe('a -> b -> c -> d -> e');
     });
   });
 });
