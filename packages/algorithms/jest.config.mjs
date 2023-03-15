@@ -2,7 +2,6 @@
 import base from '../../jest.config.base.mjs';
 
 export default {
-  displayName: 'algorithms',
   ...base,
-  transform: {},
+  displayName: 'algorithms',
 };
