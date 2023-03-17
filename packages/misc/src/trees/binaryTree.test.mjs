@@ -1,5 +1,5 @@
 import { createRequire } from 'node:module';
-import { findValue, findMaxValue, findLeafNodes } from './binaryTree.mjs';
+import { findValue, findMaxValue, findLeafNodes, maxPathSum } from './binaryTree.mjs';
 const treeData = createRequire(import.meta.url)('./treeData.json');
 const treeAlphabet = createRequire(import.meta.url)('./treeAlphabet.json');
 
@@ -33,6 +33,12 @@ describe('binaryTree', () => {
         'P',
         'Q',
       ]);
+    });
+  });
+
+  describe('maxPathSum', () => {
+    it('Gets the maximun sum from any root to a leaf path', () => {
+      expect(maxPathSum(treeData)).toBe(53);
     });
   });
 });
