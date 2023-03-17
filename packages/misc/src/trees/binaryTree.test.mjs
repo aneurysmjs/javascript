@@ -1,6 +1,7 @@
 import { createRequire } from 'node:module';
-import { findValue, findMaxValue } from './binaryTree.mjs';
+import { findValue, findMaxValue, findLeafNodes } from './binaryTree.mjs';
 const treeData = createRequire(import.meta.url)('./treeData.json');
+const treeAlphabet = createRequire(import.meta.url)('./treeAlphabet.json');
 
 describe('binaryTree', () => {
   describe('findValue', () => {
@@ -13,9 +14,25 @@ describe('binaryTree', () => {
     });
   });
 
-  describe.only('findMaxValue', () => {
+  describe('findMaxValue', () => {
     it('returns maximum value in a tree', () => {
       expect(findMaxValue(treeData)).toBe(20);
+    });
+  });
+
+  describe('findLeafNodes', () => {
+    it('finds all leaf nodes in a binary tree', () => {
+      expect(findLeafNodes(treeAlphabet)).toStrictEqual([
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'P',
+        'Q',
+      ]);
     });
   });
 });

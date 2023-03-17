@@ -40,3 +40,51 @@ export const findMaxValue = (root, value = Number.MIN_SAFE_INTEGER) => {
 
   return value;
 };
+
+export const findLeafNodesIter = (root) => {
+  const stack = [root];
+  const result = [];
+
+  while (stack.length > 0) {
+    const node = stack.pop();
+
+    if (node?.left === null && node?.right === null) {
+      result.push(node.value);
+    }
+
+    if (node.right) {
+      stack.push(node.right);
+    }
+
+    if (node.left) {
+      stack.push(node.left);
+    }
+  }
+
+  return result;
+};
+
+export const findLeafNodes = (root) => {
+  const result = [];
+
+  const helper = (node) => {
+    if (root == null) {
+      return;
+    }
+    if (node?.left === null && node?.right === null) {
+      result.push(node.value);
+    }
+
+    if (node.left) {
+      helper(node.left);
+    }
+
+    if (node.right) {
+      helper(node.right);
+    }
+  };
+
+  helper(root);
+
+  return result;
+};
