@@ -1,5 +1,6 @@
 {
   "extends": "@tsconfig/node16-strictest/tsconfig.json",
+  "lib": ["DOM", "ESNext"],
   "compilerOptions": {
     "types": ["@types/node", "@types/jest"]
   }
