@@ -19,11 +19,15 @@
       "name": "Jest Current File",
       // "program": "${workspaceFolder}/node_modules/.bin/jest",
       "args": [
-        // VS Code debug with --experimental-modules flag 
+        // VS Code debug with --experimental-modules flag
         // @see https://stackoverflow.com/a/60582503/5378393
         "--experimental-vm-modules",
-        "${workspaceFolder}/node_modules/.bin/jest",
-        "${fileBasenameNoExtension}",
+        // "${workspaceFolder}/node_modules/.bin/jest",
+        /**
+         * @see https://dev.to/elpddev/debug-jest-spec-in-vscode-error-missing-after-argument-list-1p3b
+         */
+        "${workspaceRoot}/node_modules/jest/bin/jest.js",
+        "${fileBasenameNoExtension}"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
