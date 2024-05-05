@@ -1,0 +1,10 @@
+.task-list {
+}
+
+.task-list__item {
+  @apply text-theme;
+}
+
+.task-list__item--done {
+  @apply line-through;
+}
