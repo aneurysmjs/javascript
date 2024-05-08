@@ -3,6 +3,7 @@ import {
   type KeyboardEventHandler,
   type ChangeEventHandler,
   useState,
+  useCallback,
 } from 'react';
 
 import type { Task, TaskList } from './types';
@@ -28,6 +29,8 @@ const tasksDummy: Task[] = [
 const TaskList: FunctionComponent = () => {
   const [tasks, setTasks] = useState(tasksDummy);
   const [text, setText] = useState('');
+  const [, rerender] = useState();
+  const [count, setCount] = useState(0);
 
   const handleKeydown: KeyboardEventHandler<HTMLInputElement> = (evt) => {
     if (evt.key === 'Enter') {
@@ -50,7 +53,22 @@ const TaskList: FunctionComponent = () => {
     setText(evt.target.value);
   };
 
-  const handleChecked = (taskToEdit: Task) => {
+  // const handleChecked = (taskToEdit: Task) => {
+  //   setTasks((prev) => {
+  //     return prev.map((task) => {
+  //       if (taskToEdit.created === task.created) {
+  //         return {
+  //           ...taskToEdit,
+  //           done: !task.done,
+  //         };
+  //       }
+
+  //       return task;
+  //     });
+  //   });
+  // };
+
+  const handleChecked = useCallback((taskToEdit: Task) => {
     setTasks((prev) => {
       return prev.map((task) => {
         if (taskToEdit.created === task.created) {
@@ -63,10 +81,18 @@ const TaskList: FunctionComponent = () => {
         return task;
       });
     });
+  }, []);
+
+  const handleCount = () => {
+    setCount((c) => (c += 1));
   };
 
   return (
     <div>
+      {count}
+      <button type="button" onClick={() => handleCount()}>
+        inc
+      </button>
       <input
         data-testid="task-input"
         type="text"
@@ -78,7 +104,7 @@ const TaskList: FunctionComponent = () => {
       />
       <ul>
         {tasks.sort(sortTasks).map((task, idx) => (
-          <TaskIem key={`${task.description}-${idx}`} task={task} onChecked={handleChecked} />
+          <TaskIem key={`${task.description}-${idx}`} {...task} onChecked={handleChecked} />
         ))}
       </ul>
     </div>
