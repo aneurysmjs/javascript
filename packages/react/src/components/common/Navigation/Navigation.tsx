@@ -39,6 +39,11 @@ const Navigation: FunctionComponent = () => {
               Tasks
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink to="/base-effects" className="nav-link">
+              effects
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>
