@@ -5,6 +5,7 @@
   "keywords": [],
   "author": "aneurysm <aneurysmjs@outlook.com>",
   "license": "MIT",
+  "type": "module",
   "directories": {
     "lib": "lib",
     "test": "__tests__"

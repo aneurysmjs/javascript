@@ -14,5 +14,13 @@ const projects = packages.map((pkg) => {
 
 export default {
   ...jestConfigBase,
-  projects,
+  projects: [
+    {
+      testEnvironment: 'node',
+      displayName: 'scripts',
+
+      testMatch: ['<rootDir>/scripts/*.test.mjs'],
+    },
+    ...projects,
+  ],
 };
