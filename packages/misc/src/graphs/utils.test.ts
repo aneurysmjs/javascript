@@ -1,12 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import {
-  fromGraphtoAdjancencyList,
-  fromAdjancencyListToGraph,
-  fromKeydNodeGraphtoAdjancencyList,
+  fromGraphToAdjacencyList,
+  fromAdjacencyListToGraph,
+  fromKeyedNodeGraphToAdjacencyList,
 } from './utils';
 
-import type { BaseGraph } from './types';
+import type { BaseGraph, FlightEdge } from './types';
 
 const dummyGraph: BaseGraph = {
   nodes: [
@@ -26,31 +26,38 @@ const dummyGraph: BaseGraph = {
   ],
 };
 
-const dummyAdjecencyList = new Map<number, number[]>([
+const dummyAdjacencyList = new Map<number, number[]>([
   [1, [2, 3]],
   [2, []],
   [3, []],
 ]);
 
-const flightsGraph = JSON.parse(
+interface FlightsGraph {
+  nodes: {
+    [K: string]: { name: string };
+  };
+  edges: FlightEdge[];
+}
+
+const flightsGraph: FlightsGraph = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, './flights.json'), 'utf-8'),
 );
 
 describe('graph-utils', () => {
-  describe('fromGraphtoAdjancencyList', () => {
-    it('converts a json graph to and adjancency list', () => {
-      expect(fromGraphtoAdjancencyList(dummyGraph)).toStrictEqual(dummyAdjecencyList);
+  describe('fromGraphToAdjacencyList', () => {
+    it('converts a json graph to and adjacency list', () => {
+      expect(fromGraphToAdjacencyList(dummyGraph)).toStrictEqual(dummyAdjacencyList);
     });
   });
 
-  describe('fromGraphtoAdjancencyList', () => {
-    it('converts a json adjancency list to a graph', () => {
-      expect(fromAdjancencyListToGraph(dummyAdjecencyList)).toStrictEqual(dummyGraph);
+  describe('fromGraphToAdjacencyList', () => {
+    it('converts a json adjacency list to a graph', () => {
+      expect(fromAdjacencyListToGraph(dummyAdjacencyList)).toStrictEqual(dummyGraph);
     });
   });
 
-  describe('fromKeydNodeGraphtoAdjancencyList', () => {
-    it('converts a json adjancency list to a graph', () => {
+  describe('fromKeyedNodeGraphToAdjacencyList', () => {
+    it('converts a json adjacency list to a graph', () => {
       const list = new Map<string, string[]>([
         ['ATL', ['LAX', 'ORD', 'DFW']],
         ['LAX', ['JFK', 'DEN']],
@@ -61,7 +68,8 @@ describe('graph-utils', () => {
         ['SFO', []],
         ['LAS', []],
       ]);
-      expect(fromKeydNodeGraphtoAdjancencyList(flightsGraph)).toStrictEqual(list);
+
+      expect(fromKeyedNodeGraphToAdjacencyList(flightsGraph)).toStrictEqual(list);
     });
   });
 });

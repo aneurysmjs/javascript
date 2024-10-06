@@ -30,8 +30,8 @@ export interface FlightEdge extends EdgeStr {
   airline: string;
 }
 
-export type AdjancencyList = Map<number, number[]>;
+export type AdjacencyList = Map<number, number[]>;
 
-export type AdjancencyListStr = Map<string, string[]>;
+export type AdjacencyListStr = Map<string, string[]>;
 
-export type AdjancencyFlights = Map<string, FlightEdge[]>;
+export type AdjacencyFlights = Map<string, FlightEdge[]>;

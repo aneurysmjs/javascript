@@ -1,53 +1,50 @@
-import type { BaseGraph, AdjancencyList, AdjancencyListStr, KeyedNodeGraph } from './types';
+import type { BaseGraph, AdjacencyList, AdjacencyListStr, KeyedNodeGraph } from './types.js';
 
-export const fromGraphtoAdjancencyList = (graph: BaseGraph): AdjancencyList => {
-  const adjancencyList = new Map<number, number[]>();
+export const fromGraphToAdjacencyList = (graph: BaseGraph): AdjacencyList => {
+  const adjacencyList = new Map<number, number[]>();
 
   graph.nodes.forEach((node) => {
-    if (!adjancencyList.has(node.id)) {
-      adjancencyList.set(node.id, []);
+    if (!adjacencyList.has(node.id)) {
+      adjacencyList.set(node.id, []);
     }
   });
 
   graph.edges.forEach((edge) => {
-    if (adjancencyList.has(edge.source)) {
-      adjancencyList.get(edge.source)?.push(edge.target);
+    if (adjacencyList.has(edge.source)) {
+      adjacencyList.get(edge.source)?.push(edge.target);
     }
   });
 
-  return adjancencyList;
+  return adjacencyList;
 };
 
-export const fromKeydNodeGraphtoAdjancencyList = (
+export const fromKeyedNodeGraphToAdjacencyList = (
   keyedNodeGraph: KeyedNodeGraph,
-): AdjancencyListStr => {
-  const adjancencyList = new Map<string, string[]>();
+): AdjacencyListStr => {
+  const adjacencyList = new Map<string, string[]>();
 
   Object.keys(keyedNodeGraph.nodes).forEach((key) => {
-    if (!adjancencyList.has(key)) {
-      adjancencyList.set(key, []);
+    if (!adjacencyList.has(key)) {
+      adjacencyList.set(key, []);
     }
   });
 
   keyedNodeGraph.edges.forEach((edge) => {
-    if (adjancencyList.has(edge.source)) {
-      // @ts-ignore
-      adjancencyList.get(edge.source)?.push(edge);
+    if (adjacencyList.has(edge.source)) {
+      adjacencyList.get(edge.source)?.push(edge.target);
     }
   });
 
-  console.log('adjancencyList', adjancencyList);
-
-  return adjancencyList;
+  return adjacencyList;
 };
 
-export const fromAdjancencyListToGraph = (adjancencyList: AdjancencyList): BaseGraph => {
+export const fromAdjacencyListToGraph = (adjacencyList: AdjacencyList): BaseGraph => {
   const graph: BaseGraph = {
     nodes: [],
     edges: [],
   };
 
-  for (const [id, targets] of adjancencyList.entries()) {
+  for (const [id, targets] of adjacencyList.entries()) {
     graph.nodes.push({ id, label: `node ${id}` });
 
     if (targets.length) {

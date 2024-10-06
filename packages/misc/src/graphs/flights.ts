@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import type { AdjancencyFlights, FlightEdge } from './types';
+import type { AdjacencyFlights, FlightEdge } from './types';
 
 interface FlightsGraph {
   nodes: {
@@ -14,27 +14,27 @@ const flightsGraph: FlightsGraph = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, './flights.json'), 'utf-8'),
 );
 
-export const fromFlightsGraphtoFlightAdjancencyList = (
+export const fromFlightsGraphToFlightAdjacencyList = (
   keyedNodeGraph: FlightsGraph,
-): AdjancencyFlights => {
-  const adjancencyList = new Map<string, FlightEdge[]>();
+): AdjacencyFlights => {
+  const adjacencyList = new Map<string, FlightEdge[]>();
 
   Object.keys(keyedNodeGraph.nodes).forEach((key) => {
-    if (!adjancencyList.has(key)) {
-      adjancencyList.set(key, []);
+    if (!adjacencyList.has(key)) {
+      adjacencyList.set(key, []);
     }
   });
 
   keyedNodeGraph.edges.forEach((edge) => {
-    if (adjancencyList.has(edge.source)) {
-      adjancencyList.get(edge.source)?.push(edge);
+    if (adjacencyList.has(edge.source)) {
+      adjacencyList.get(edge.source)?.push(edge);
     }
   });
 
-  return adjancencyList;
+  return adjacencyList;
 };
 
-const flightsAdjacencyList = fromFlightsGraphtoFlightAdjancencyList(flightsGraph);
+const flightsAdjacencyList = fromFlightsGraphToFlightAdjacencyList(flightsGraph);
 
 export const findRoute = (from: string, to: string) => {
   const queue = [from];
