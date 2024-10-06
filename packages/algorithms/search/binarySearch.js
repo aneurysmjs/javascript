@@ -11,11 +11,11 @@ export const binarySearch = (arr, target) => {
   while (left <= right) {
     const middle = Math.round((left + right) / 2);
 
-    const potencialMatch = arr[middle];
+    const potentialMatch = arr[middle];
 
-    if (target === potencialMatch) {
+    if (target === potentialMatch) {
       return middle;
-    } else if (target < potencialMatch) {
+    } else if (target < potentialMatch) {
       right = middle - 1;
     } else {
       left = middle + 1;
