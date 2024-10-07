@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react';
 
-import StarwarsForm from '../components/StarwarsForm';
+import StarWarsForm from '../components/StarWarsForm';
 
 import './HomePage.scss';
 
@@ -12,7 +12,7 @@ const HomePage: FunctionComponent = () => {
       </h2>
 
       <div className="w-25 mx-auto">
-        <StarwarsForm />
+        <StarWarsForm />
       </div>
     </section>
   );

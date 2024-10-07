@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import { FunctionComponent, useState, Dispatch, SetStateAction, KeyboardEvent } from 'react';
-// @ts-ignore
-import debounce from 'lodash.debounce'; // eslint-disable-line import/no-extraneous-dependencies, import/no-unresolved
+import { type FC, useState, Dispatch, SetStateAction, KeyboardEvent } from 'react';
+import debounce from 'lodash.debounce';
 import axios, { type AxiosResponse, type AxiosError } from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
@@ -24,7 +22,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner';
  */
 
 const apiUrl = 'https://swapi.dev/api/people';
-// angp@ciklum.com
+
 interface Character {
   birth_year: string;
   eye_color: string;
@@ -66,7 +64,7 @@ const fetchCharacter = (
   });
 };
 
-const StarwarsForm: FunctionComponent = () => {
+const StarWarsForm: FC = () => {
   const [characterNames, setCharacterNames] = useState<Character[]>([]);
   const [isRequestGoing, setIsRequestGoing] = useState(false);
 
@@ -120,4 +118,4 @@ const StarwarsForm: FunctionComponent = () => {
   );
 };
 
-export default StarwarsForm;
+export default StarWarsForm;

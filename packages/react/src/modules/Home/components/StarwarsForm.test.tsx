@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import axios from 'axios';
-// @ts-ignore
 import { render, fireEvent, act } from '@testing-library/react';
-import StarwarsForm from './StarwarsForm';
+import StarWarsForm from './StarWarsForm';
 import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('axios');
@@ -30,12 +28,12 @@ const characterData = [
   },
 ];
 
-describe('StarwarsForm', () => {
+describe('StarWarsForm', () => {
   it('should display a list of character names after searching', async () => {
     (axios.get as jest.Mock).mockResolvedValue({ data: { results: characterData } });
 
     // @ts-ignore
-    const { getByPlaceholderText, getAllByTestId, queryByTestId } = render(<StarwarsForm />);
+    const { getByPlaceholderText, getAllByTestId, queryByTestId } = render(<StarWarsForm />);
 
     const input = getByPlaceholderText('type a name');
 
