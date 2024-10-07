@@ -17,7 +17,7 @@ const BaseEffects: FunctionComponent = () => {
   };
 
   return (
-    <div>
+    <div className="text-theme">
       <form
         onSubmit={(evt) => {
           evt.preventDefault();

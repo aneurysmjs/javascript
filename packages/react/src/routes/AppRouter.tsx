@@ -1,4 +1,4 @@
-import { type FunctionComponent, lazy, Suspense } from 'react';
+import { type FC, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Layout from '@/components/common/Layout';
@@ -7,8 +7,9 @@ import TasksPage from '@/modules/Home/pages/TasksPage';
 import BaseEffectsPage from '@/modules/Home/pages/BaseEffectsPage';
 
 const BaseDeferredValuePage = lazy(() => import('@/modules/Home/pages/BaseDeferredValuePage'));
+const DashboardPage = lazy(() => import('@/modules/Home/pages/DashboardPage'));
 
-const AppRouter: FunctionComponent = () => (
+const AppRouter: FC = () => (
   <Router>
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -20,6 +21,14 @@ const AppRouter: FunctionComponent = () => (
           element={
             <Suspense>
               <BaseDeferredValuePage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <Suspense>
+              <DashboardPage />
             </Suspense>
           }
         />
