@@ -8,6 +8,7 @@ import TaskItem from './TaskItem';
 describe('TaskItem', () => {
   it('checks item', () => {
     const task = {
+      id: '1',
       description: 'yeah',
       done: false,
       created: new Date().getTime(),

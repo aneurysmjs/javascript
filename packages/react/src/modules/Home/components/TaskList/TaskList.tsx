@@ -1,12 +1,13 @@
 import {
-  type FunctionComponent,
+  type FC,
   type KeyboardEventHandler,
   type ChangeEventHandler,
   useState,
+  useId,
 } from 'react';
 
 import type { Task, TaskList } from './types';
-import TaskIem from './TaskItem';
+import TaskItem from './TaskItem';
 
 import './TaskList.css';
 
@@ -19,15 +20,16 @@ const sortTasks = (taskA: Task, taskB: Task) => {
 };
 
 const tasksDummy: Task[] = [
-  { description: 'Prepare for the interview', done: true, created: 1603450754 },
-  { description: 'Do an awesome task', done: false, created: 1603450554 },
-  { description: 'Be nice', done: false, created: 1603450354 },
-  { description: 'Get hired', done: false, created: 1603450154 },
+  { id: '1', description: 'Prepare for the interview', done: true, created: 1603450754 },
+  { id: '2', description: 'Do an awesome task', done: false, created: 1603450554 },
+  { id: '3', description: 'Be nice', done: false, created: 1603450354 },
+  { id: '4', description: 'Get hired', done: false, created: 1603450154 },
 ];
 
-const TaskList: FunctionComponent = () => {
+const TaskList: FC = () => {
   const [tasks, setTasks] = useState(tasksDummy);
   const [text, setText] = useState('');
+  const newId = useId();
 
   const handleKeydown: KeyboardEventHandler<HTMLInputElement> = (evt) => {
     if (evt.key === 'Enter') {
@@ -35,6 +37,7 @@ const TaskList: FunctionComponent = () => {
         return [
           ...prev,
           {
+            id: newId,
             description: text,
             done: false,
             created: new Date().getTime(),
@@ -78,7 +81,7 @@ const TaskList: FunctionComponent = () => {
       />
       <ul>
         {tasks.sort(sortTasks).map((task, idx) => (
-          <TaskIem key={`${task.description}-${idx}`} task={task} onChecked={handleChecked} />
+          <TaskItem key={`${task.id}-${idx}`} task={task} onChecked={handleChecked} />
         ))}
       </ul>
     </div>

@@ -1,4 +1,4 @@
-import { type FunctionComponent, memo } from 'react';
+import { type FC, memo } from 'react';
 import classNames from 'classnames';
 
 import type { Task } from '../types';
@@ -8,22 +8,23 @@ interface TaskItemProps {
   onChecked: (task: Task) => void;
 }
 
-const TaskIem: FunctionComponent<TaskItemProps> = ({ task, onChecked }) => {
+const TaskIem: FC<TaskItemProps> = ({ task, onChecked }) => {
   //  console.log('Render');
   return (
     <li
       data-testid="task-item"
       className={classNames('task-list__item', {
-        'task-list__item--done': task.done,
+        'line-through': task.done,
       })}
     >
       <input
+        id={task.id}
         type="checkbox"
         aria-label="check item"
         checked={task.done}
         onChange={() => onChecked(task)}
       />
-      {task.description}
+      <label htmlFor={task.id}>{task.description}</label>
     </li>
   );
 };
