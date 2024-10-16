@@ -93,7 +93,10 @@ export default function DashboardTabs() {
             <TabPanel className="text-theme">Content 1</TabPanel>
             {/* <TabPanel className="text-theme">Content 2</TabPanel>
             <TabPanel className="text-theme">Content 3</TabPanel> */}
-            <Suspense fallback={<Loader />}>{DashboardTab ? <DashboardTab /> : null}</Suspense>
+            {/* <Suspense fallback={<Loader />}>{DashboardTab ? <DashboardTab /> : null}</Suspense> */}
+            <TabPanel>
+              <Suspense fallback={<Loader />}>{DashboardTab ? <DashboardTab /> : null}</Suspense>
+            </TabPanel>
           </TabPanels>
         </TabGroup>
       </div>

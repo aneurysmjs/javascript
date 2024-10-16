@@ -9,7 +9,7 @@ const DashboardPage: FC = () => {
         tasks
       </h2>
 
-      <div className="w-25 mx-auto">
+      <div className="w-70 mx-auto">
         <DashboardTabs />
       </div>
     </section>
