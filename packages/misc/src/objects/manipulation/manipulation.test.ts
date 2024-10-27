@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
 
-import { add, get } from './manipulation';
+import { add, get, remove } from './manipulation';
 
 describe('manipulation', () => {
   describe('add', () => {
@@ -88,6 +88,43 @@ describe('manipulation', () => {
       const result = undefined;
 
       expect(get(target, 'some.other')).toStrictEqual(result);
+    });
+  });
+
+  describe('remove', () => {
+    it('should remove a value from a simple path', () => {
+      const target = { some: {} };
+      const result = {};
+
+      expect(remove(target, 'some')).toStrictEqual(result);
+    });
+
+    it('should remove a value from a nested path', () => {
+      const target = { some: { nested: {} } };
+      const result = { some: {} };
+
+      expect(remove(target, 'some.nested')).toStrictEqual(result);
+    });
+
+    it('should remove a value from a deep nested path', () => {
+      const target = { some: { deep: { nested: {} } } };
+      const result = { some: { deep: {} } };
+
+      expect(remove(target, 'some.deep.nested')).toStrictEqual(result);
+    });
+
+    it('should return the same target if property specified by path does not exist', () => {
+      const target = { some: {} };
+      const result = { some: {} };
+
+      expect(remove(target, 'another')).toStrictEqual(result);
+    });
+
+    it('should return the same target if property specified by nested path does not exist', () => {
+      const target = { some: { nested: {} } };
+      const result = { some: { nested: {} } };
+
+      expect(remove(target, 'some.other')).toStrictEqual(result);
     });
   });
 });
