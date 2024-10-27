@@ -26,3 +26,9 @@ export function add<T extends Record<string, any>>(target: T, path: string, valu
   // Start the recursive building process
   return build(target, 0);
 }
+
+export function get<T extends Record<string, any>>(target: T, path: string) {
+  const keys = path.includes('.') ? path.split('.') : [path];
+
+  return keys.reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), target);
+}

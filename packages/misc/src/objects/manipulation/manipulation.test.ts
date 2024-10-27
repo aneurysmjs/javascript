@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
 
-import { add } from './manipulation';
+import { add, get } from './manipulation';
 
 describe('manipulation', () => {
   describe('add', () => {
@@ -65,6 +65,29 @@ describe('manipulation', () => {
       const result = { other: { nested: 'value' } };
 
       expect(add(target, 'other.nested', 'value')).toStrictEqual(result);
+    });
+  });
+
+  describe('get', () => {
+    it('should get a value from a simple path', () => {
+      const target = { some: {} };
+      const result = {};
+
+      expect(get(target, 'some')).toStrictEqual(result);
+    });
+
+    it('should get a value from a nested path', () => {
+      const target = { some: { nested: { prop: {} } } };
+      const result = { prop: {} };
+
+      expect(get(target, 'some.nested')).toStrictEqual(result);
+    });
+
+    it('should get undefined if path does not exists on targe', () => {
+      const target = { some: { nested: { prop: {} } } };
+      const result = undefined;
+
+      expect(get(target, 'some.other')).toStrictEqual(result);
     });
   });
 });
