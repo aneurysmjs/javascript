@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
 
-import { add } from './manipulation.mjs';
+import { add } from './manipulation';
 
 describe('manipulation', () => {
   describe('add', () => {

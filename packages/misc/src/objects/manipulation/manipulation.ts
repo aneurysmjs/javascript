@@ -5,11 +5,11 @@
  * @param {any} [value]
  * @returns
  */
-export function add(target, path, value) {
+export function add<T extends Record<string, any>>(target: T, path: string, value?: any) {
   const keys = path.split('.');
 
   // Helper function to recursively build the object
-  function build(obj, index) {
+  function build(obj: T, index: number): T {
     // If we've processed all keys, return an empty object at this level
     if (index === keys.length) {
       return value ?? {};
