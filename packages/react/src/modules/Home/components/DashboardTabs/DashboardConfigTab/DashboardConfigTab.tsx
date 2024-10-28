@@ -1,14 +1,11 @@
-import axios, { type AxiosResponse } from 'axios';
-import { type FC, useEffect, useState } from 'react';
-
-const url = 'https://jsonplaceholder.typicode.com/comments';
+import { type FC } from 'react';
 
 import useFetchConfigData from '../hooks/useFetchConfigData';
 
-interface Data {
-  id: number;
-  body: string;
-}
+// interface Data {
+//   id: number;
+//   body: string;
+// }
 
 // const useFetchConfigData = () => {
 //   const [data, setData] = useState<Data[]>([]);
@@ -52,14 +49,18 @@ const DashboardConfigTab: FC = () => {
 
   return (
     <div className="text-theme">
-      {isLoading && <div className="text-theme">...fetching data</div>}
+      {isLoading && (
+        <div className="text-theme" role="status">
+          ...fetching data
+        </div>
+      )}
       {data.length > 0 && (
         <div className="h-72 overflow-y-scroll">
           {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
 
           <ul>
             {data.map((item) => (
-              <li className="mb-3" key={item.id}>
+              <li className="mb-3" key={item.id} aria-label="config item">
                 {item.body}
               </li>
             ))}
@@ -67,7 +68,7 @@ const DashboardConfigTab: FC = () => {
         </div>
       )}
       {error && (
-        <div className="text-theme">
+        <div className="text-theme" role="alert">
           <pre>{JSON.stringify(error, null, 2)}</pre>
         </div>
       )}
