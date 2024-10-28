@@ -1,8 +1,11 @@
 import { type FC } from 'react';
 
 const DashboardPanelTab: FC = () => {
-  //  console.log('Render');
-  return <div>panel</div>;
+  return (
+    <div className="text-theme" aria-label="dashboard panel">
+      panel
+    </div>
+  );
 };
 
 export default DashboardPanelTab;
