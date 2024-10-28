@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from 'react';
 
-import axios from 'axios';
+import axios, { type AxiosError } from 'axios';
 import { Data } from '../types';
 
 interface State {
@@ -59,29 +59,52 @@ export default function useFetchConfigData() {
     let isMounted = true;
     const controller = new AbortController();
 
-    if (!state.data.length) {
-      // Only fetch if data is empty
-      dispatch({ type: FETCH_INIT });
+    // Only fetch if data is empty
+    dispatch({ type: FETCH_INIT });
 
-      axios
-        .get<Data[]>(API_URL, { signal: controller.signal })
-        .then((response) => {
-          if (isMounted) {
-            dispatch({ type: FETCH_SUCCESS, payload: response.data });
-          }
-        })
-        .catch((err) => {
-          if (isMounted && err.name !== 'AbortError') {
-            dispatch({ type: FETCH_FAILURE, error: err });
-          }
-        });
-    }
+    (async () => {
+      try {
+        const response = await axios.get<Data[]>(API_URL, { signal: controller.signal });
+
+        // if (isMounted) {
+        //   dispatch({ type: FETCH_SUCCESS, payload: response.data });
+        // }
+        if (isMounted && response.status === 200) {
+          dispatch({ type: FETCH_SUCCESS, payload: response.data });
+        } else {
+          console.error(`HTTP error! Status: ${response.status}`);
+        }
+      } catch (error: unknown) {
+        // if (isMounted && (error as AxiosError).name !== 'AbortError') {
+        //   dispatch({ type: FETCH_FAILURE, error: error as AxiosError });
+        // }
+
+        if (!axios.isCancel(error)) {
+          dispatch({ type: FETCH_FAILURE, error: error as AxiosError });
+        }
+      }
+    })();
+
+    // axios
+    //   .get<Data[]>(API_URL, { signal: controller.signal })
+    //   .then((response) => {
+    //     if (isMounted) {
+    //       dispatch({ type: FETCH_SUCCESS, payload: response.data });
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log('err', err);
+
+    //     if (isMounted && err.name !== 'AbortError') {
+    //       dispatch({ type: FETCH_FAILURE, error: err });
+    //     }
+    //   });
 
     return () => {
       isMounted = false;
       controller.abort();
     };
-  }, [state.data]);
+  }, []);
 
   return {
     data: state.data,
