@@ -9,29 +9,33 @@ interface State {
   error: Error | null;
 }
 
-type Action =
-  | { type: 'FETCH_INIT' }
-  | { type: 'FETCH_SUCCESS'; payload: Data[] }
-  | { type: 'FETCH_FAILURE'; error: Error };
+const FETCH_INIT = 'FETCH_INIT';
+const FETCH_SUCCESS = 'FETCH_SUCCESS';
+const FETCH_FAILURE = 'FETCH_FAILURE';
 
-const url = 'https://jsonplaceholder.typicode.com/comments';
+type Action =
+  | { type: typeof FETCH_INIT }
+  | { type: typeof FETCH_SUCCESS; payload: Data[] }
+  | { type: typeof FETCH_FAILURE; error: Error };
+
+export const API_URL = 'https://jsonplaceholder.typicode.com/comments';
 
 const dataFetchReducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'FETCH_INIT':
+    case FETCH_INIT:
       return {
         ...state,
         isLoading: true,
         error: null,
       };
-    case 'FETCH_SUCCESS':
+    case FETCH_SUCCESS:
       return {
         ...state,
         isLoading: false,
         data: action.payload,
         error: null,
       };
-    case 'FETCH_FAILURE':
+    case FETCH_FAILURE:
       return {
         ...state,
         isLoading: false,
@@ -57,18 +61,18 @@ export default function useFetchConfigData() {
 
     if (!state.data.length) {
       // Only fetch if data is empty
-      dispatch({ type: 'FETCH_INIT' });
+      dispatch({ type: FETCH_INIT });
 
       axios
-        .get<Data[]>(url, { signal: controller.signal })
+        .get<Data[]>(API_URL, { signal: controller.signal })
         .then((response) => {
           if (isMounted) {
-            dispatch({ type: 'FETCH_SUCCESS', payload: response.data });
+            dispatch({ type: FETCH_SUCCESS, payload: response.data });
           }
         })
         .catch((err) => {
           if (isMounted && err.name !== 'AbortError') {
-            dispatch({ type: 'FETCH_FAILURE', error: err });
+            dispatch({ type: FETCH_FAILURE, error: err });
           }
         });
     }
