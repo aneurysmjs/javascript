@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "vite --open",
-    "test": "pnpm -w t -- -c=\"${INIT_CWD}/packages/react/jest.config.mjs\""
+    "test:mjs": "pnpm -w t -- -c=\"${INIT_CWD}/packages/react/jest.config.mjs\"",
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/aneurysmjs/javascript/issues"
@@ -44,7 +45,6 @@
     "@playwright/test": "1.47.2",
     "@testing-library/jest-dom": "6.5.0",
     "@testing-library/react": "16.0.1",
-    "@types/loadable__component": "5.13.9",
     "@types/lodash.debounce": "4.0.9",
     "@types/ramda": "0.30.2",
     "@types/react": "18.3.11",
@@ -54,7 +54,6 @@
     "@types/react-redux": "7.1.25",
     "@types/react-router-dom": "5.3.3",
     "@types/redux": "3.6.31",
-    "@types/testing-library__jest-dom": "5.14.5",
     "@vitejs/plugin-react": "3.1.0",
     "autoprefixer": "^10.4.20",
     "eslint-config-airbnb-base": "15.0.0",

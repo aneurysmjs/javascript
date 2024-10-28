@@ -19,9 +19,8 @@
     },
     "sourceMap": true,
     "strict": true,
-    "suppressImplicitAnyIndexErrors": true,
     "target": "es5",
-    "types": ["@types/testing-library__jest-dom"]
+    "types": ["@testing-library/jest-dom"]
   },
   "exclude": ["node_modules", "build", "jest"]
 }
