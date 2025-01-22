@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Context menu with single event listener</title>
+    <link rel="stylesheet" href="basic.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .context-menu {
+        position: absolute;
+        display: none;
+        background-color: white;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        z-index: 1000;
+      }
+
+      .context-menu-item {
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      .context-menu-item:hover {
+        background-color: #f0f0f0;
+      }
+
+      .target-element {
+        width: 200px;
+        height: 100px;
+        background-color: lightblue;
+        margin: 50px auto;
+        text-align: center;
+        line-height: 100px;
+        border: 1px solid #007bff;
+      }
+    </style>
+  </head>
+  <body class="bg-neutral-900">
+    <div class="container">
+      <!-- Example target elements -->
+      <div class="target-element">Right-click me 1</div>
+      <div class="target-element">Right-click me 2</div>
+      <div class="target-element">Right-click me 3</div>
+      <!-- Add as many elements as needed -->
+    </div>
+    <div class="context-menu" id="customMenu">
+      <div class="context-menu-item">Option 1</div>
+      <div class="context-menu-item">Option 2</div>
+      <div class="context-menu-item">Option 3</div>
+    </div>
+
+    <script type="module" src="singleListener.js"></script>
+  </body>
+</html>
