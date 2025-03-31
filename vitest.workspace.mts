@@ -6,7 +6,7 @@ import path from 'node:path';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-const packages = path.resolve(dirname, 'scripts');
+const packages = path.resolve(dirname, 'packages');
 
 function getFoldersSync(dirPath: string) {
   const files = fs.readdirSync(dirPath);
