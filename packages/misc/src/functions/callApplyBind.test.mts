@@ -1,4 +1,6 @@
-import { myFunction } from './callApplyBind';
+import { describe, expect, it } from 'vitest';
+
+import { myFunction } from './callApplyBind.mjs';
 
 /**
  * call: Invokes a function immediately, setting its this value to the first argument.

@@ -1,5 +1,7 @@
+import { afterEach, describe, expect, it, vi, type Mock } from 'vitest';
+
 import mockAxios from 'axios';
-import fetching from './fetching';
+import fetching from './fetching.mjs';
 
 const url = 'https://api.coindesk.com/v1/bpi/currentprice.json';
 
@@ -39,24 +41,26 @@ const dataMock = {
   },
 };
 
-// jest.mock('axios', () => ({
-//   get: jest.fn().mockImplementation(() => Promise.resolve(dataMock)),
+// vi.mock('axios', () => ({
+//   default: { get: vi.fn().mockImplementation(() => Promise.resolve(dataMock)) },
 // }));
 
-jest.mock('axios');
+vi.mock('axios');
 
 describe('fetching', () => {
-  afterEach(jest.clearAllMocks);
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
   it('resolves data', async () => {
-    (mockAxios.get as jest.Mock).mockImplementation(() => Promise.resolve(dataMock));
+    (mockAxios.get as Mock).mockImplementation(() => Promise.resolve(dataMock));
 
     await expect(fetching(url)).resolves.toStrictEqual(dataMock);
     expect(mockAxios.get).toHaveBeenCalledWith(url);
   });
 
   it('rejects data', async () => {
-    (mockAxios.get as jest.Mock).mockImplementation(() => Promise.reject('Not Found'));
+    (mockAxios.get as Mock).mockImplementation(() => Promise.reject('Not Found'));
 
     await expect(fetching(url)).rejects.toStrictEqual('Not Found');
   });

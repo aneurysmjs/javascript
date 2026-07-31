@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import type { AdjacencyFlights, FlightEdge } from './types';
+import type { AdjacencyFlights, FlightEdge } from './types.mjs';
 
 interface FlightsGraph {
   nodes: {

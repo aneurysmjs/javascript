@@ -1,23 +1,24 @@
-import { jest } from '@jest/globals';
-import debounce from './debounce';
+import { describe, expect, test, vi } from 'vitest';
 
-jest.useFakeTimers();
+import debounce from './debounce.mjs';
+
+vi.useFakeTimers();
 
 describe('debounce', () => {
   test('execute just once', () => {
-    const func = jest.fn();
+    const func = vi.fn();
     const debouncedFunc = debounce(func, 500);
 
     // Execute for the first time
     debouncedFunc();
 
     // Move on the timer
-    jest.advanceTimersByTime(250);
+    vi.advanceTimersByTime(250);
     // try to execute a 2nd time
     debouncedFunc();
 
     // Fast-forward time
-    jest.runAllTimers();
+    vi.runAllTimers();
 
     expect(func).toBeCalledTimes(1);
   });

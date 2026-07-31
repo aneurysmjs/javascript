@@ -1,4 +1,4 @@
-import insertAt from './insertAt';
+import insertAt from './insertAt.mjs';
 
 interface Orderable {
   order: number;

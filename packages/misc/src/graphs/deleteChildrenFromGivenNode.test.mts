@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import deleteChildrenFromGivenNode from './deleteChildrenFromGivenNode';
+import deleteChildrenFromGivenNode from './deleteChildrenFromGivenNode.mjs';
 
 describe('deleteChildrenFromGivenNode', () => {
   it('it deletes all children nodes from node 3', () => {

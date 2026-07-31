@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import toggleChildNodes from './toggleChildNodes';
+import toggleChildNodes from './toggleChildNodes.mjs';
 
 describe('toggleChildNodes', () => {
   it('finds a route between 2 nodes', () => {

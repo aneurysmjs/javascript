@@ -1,12 +1,14 @@
+import { describe, expect, it } from 'vitest';
+
 import fs from 'node:fs';
 import path from 'node:path';
 import {
   fromGraphToAdjacencyList,
   fromAdjacencyListToGraph,
   fromKeyedNodeGraphToAdjacencyList,
-} from './utils';
+} from './utils.mjs';
 
-import type { BaseGraph, FlightEdge } from './types';
+import type { BaseGraph, FlightEdge } from './types.mjs';
 
 const dummyGraph: BaseGraph = {
   nodes: [

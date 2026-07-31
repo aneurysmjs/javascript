@@ -1,4 +1,4 @@
-import type { BaseGraph, AdjacencyList, AdjacencyListStr, KeyedNodeGraph } from './types.js';
+import type { BaseGraph, AdjacencyList, AdjacencyListStr, KeyedNodeGraph } from './types.mjs';
 
 export const fromGraphToAdjacencyList = (graph: BaseGraph): AdjacencyList => {
   const adjacencyList = new Map<number, number[]>();

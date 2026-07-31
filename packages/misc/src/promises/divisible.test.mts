@@ -1,4 +1,6 @@
-import divisible from './divisible';
+import { describe, expect, it } from 'vitest';
+
+import divisible from './divisible.mjs';
 
 describe('divisible', () => {
   it('resolves when number is divisible by 5', async () => {

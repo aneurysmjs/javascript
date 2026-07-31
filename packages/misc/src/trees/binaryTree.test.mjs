@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { createRequire } from 'node:module';
 import { findValue, findMaxValue, findLeafNodes, maxPathSum } from './binaryTree.mjs';
 const treeData = createRequire(import.meta.url)('./treeData.json');

@@ -1,4 +1,6 @@
-import insertAt from './insertAt';
+import { describe, expect, it } from 'vitest';
+
+import insertAt from './insertAt.mjs';
 
 describe('insertAt', () => {
   const lodaouts = ['Miro', 'Chen Li', 'David'];

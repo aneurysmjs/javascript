@@ -1,6 +1,56 @@
 import { describe, it, expect } from 'vitest';
 
-import hideSiblingNodes, { type Node } from './hideSiblingNodes.js';
+import hideSiblingNodes, { type Node } from './hideSiblingNodes.mjs';
+
+export const mockDataOfOneLevelDeepSharedChildren = [
+  {
+    id: '1',
+    parentIds: [],
+  },
+  {
+    id: '3',
+    parentIds: ['1'],
+  },
+  {
+    id: '4',
+    parentIds: ['3', '2'],
+  },
+  {
+    id: '2',
+    parentIds: ['1'],
+  },
+];
+
+export const mockDataOfTwoLevelDeepSharedChildren = [
+  {
+    id: '1',
+    parentIds: [],
+  },
+  {
+    id: '2',
+    parentIds: ['1'],
+  },
+  {
+    id: '6',
+    parentIds: ['2'],
+  },
+  {
+    id: '7',
+    parentIds: ['6', '5'],
+  },
+  {
+    id: '4',
+    parentIds: ['1'],
+  },
+  {
+    id: '3',
+    parentIds: ['1'],
+  },
+  {
+    id: '5',
+    parentIds: ['3'],
+  },
+];
 
 // Example usage
 const mockDataOfMultipleLevelsDeep = [
@@ -221,5 +271,143 @@ describe('hideSiblingNodes', () => {
         expect(deletedNodesMap).toStrictEqual(expectedDeletedNodes);
       },
     );
+  });
+
+  describe('handling sibling nodes that has shared children', () => {
+    describe('tree of 1 level of shared children', () => {
+      const cases = [
+        [
+          { id: '2', parentIds: ['1'] },
+          [
+            {
+              id: '1',
+              parentIds: [],
+            },
+            {
+              id: '4',
+              parentIds: ['2'],
+            },
+            {
+              id: '2',
+              parentIds: ['1'],
+            },
+          ],
+          new Map([['2', ['3']]]),
+        ],
+        [
+          { id: '3', parentIds: ['1'] },
+          [
+            {
+              id: '1',
+              parentIds: [],
+            },
+            {
+              id: '3',
+              parentIds: ['1'],
+            },
+            {
+              id: '4',
+              parentIds: ['3'],
+            },
+          ],
+          new Map([['3', ['2']]]),
+        ],
+      ];
+
+      it.each(cases)(
+        'should hide siblings of node "%o"',
+        (node, expectedTree, expectedDeletedNodes) => {
+          const currentTree = structuredClone(mockDataOfOneLevelDeepSharedChildren);
+
+          const deletedNodesMap = new Map<string, string[]>();
+
+          const updatedTree = hideSiblingNodes(node, currentTree, deletedNodesMap);
+
+          expect(updatedTree).toStrictEqual(expectedTree);
+
+          expect(deletedNodesMap).toStrictEqual(expectedDeletedNodes);
+        },
+      );
+    });
+
+    describe('tree of 2 levels of shared children', () => {
+      const cases = [
+        [
+          { id: '2', parentIds: ['1'] },
+          [
+            {
+              id: '1',
+              parentIds: [],
+            },
+            {
+              id: '2',
+              parentIds: ['1'],
+            },
+            {
+              id: '6',
+              parentIds: ['2'],
+            },
+            {
+              id: '7',
+              parentIds: ['6'],
+            },
+          ],
+          new Map([['2', ['4', '3', '5']]]),
+        ],
+        [
+          { id: '3', parentIds: ['1'] },
+          [
+            {
+              id: '1',
+              parentIds: [],
+            },
+            {
+              id: '3',
+              parentIds: ['1'],
+            },
+            {
+              id: '5',
+              parentIds: ['3'],
+            },
+            {
+              id: '7',
+              parentIds: ['5'],
+            },
+          ],
+          new Map([['3', ['2', '6', '4']]]),
+        ],
+        [
+          { id: '4', parentIds: ['1'] },
+          [
+            {
+              id: '1',
+              parentIds: [],
+            },
+            {
+              id: '4',
+              parentIds: ['1'],
+            },
+          ],
+          new Map([['4', ['2', '6', '7', '3', '5']]]),
+        ],
+      ];
+
+      it.each(cases)(
+        'should hide siblings of node "%o"',
+        (node, expectedTree, expectedDeletedNodes) => {
+          const currentTree = structuredClone(mockDataOfTwoLevelDeepSharedChildren);
+
+          const deletedNodesMap = new Map<string, string[]>();
+
+          const updatedTree = hideSiblingNodes(node, currentTree, deletedNodesMap);
+
+          expect(updatedTree).toEqual(
+            expect.arrayContaining(expectedTree as { id: string; parentIds: [] }[]),
+          );
+
+          expect(deletedNodesMap).toStrictEqual(expectedDeletedNodes);
+        },
+      );
+    });
   });
 });

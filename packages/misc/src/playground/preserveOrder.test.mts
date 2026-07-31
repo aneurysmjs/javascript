@@ -1,4 +1,6 @@
-import preserveOrder from './preserveOrder';
+import { describe, expect, it } from 'vitest';
+
+import preserveOrder from './preserveOrder.mjs';
 
 describe('preserveOrder', () => {
   const arr = [

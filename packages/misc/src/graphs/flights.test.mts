@@ -1,4 +1,6 @@
-import { findRoute } from './flights';
+import { describe, expect, it } from 'vitest';
+
+import { findRoute } from './flights.mjs';
 
 describe('flights', () => {
   describe('findRoute', () => {
