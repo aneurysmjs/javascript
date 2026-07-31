@@ -1,51 +1,38 @@
-export default function createStack() {
-  let stack = [];
+export default function createStack<T>() {
+  let stack: T[] = [];
 
   /**
    * @description Adds an item to the end of the stack.
-   *
-   * @template T
-   * @returns T
    */
-  const push = (item) => {
+  const push = (item: T): void => {
     stack = [...stack, item];
   };
 
   /**
    * @description Returns the last item of the stack.
-   *
-   * @template T
-   * @returns T
    */
-  const pop = () => {
+  const pop = (): T | undefined => {
     return stack.pop();
   };
 
   /**
    * @description Returns the amount of items in the stack.
-   *
-   * @returns number
    */
-  const length = () => {
+  const length = (): number => {
     return stack.length;
   };
 
   /**
    * @description Look at what's next to be removed.
-   *
-   * @template T
-   * @returns T
    */
-  const peek = () => {
+  const peek = (): T | undefined => {
     return stack[stack.length - 1];
   };
 
   /**
    * @description Checks whether the stack is empty.
-   *
-   * @returns boolean
    */
-  const isEmpty = () => {
+  const isEmpty = (): boolean => {
     return stack.length === 0;
   };
 

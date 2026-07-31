@@ -1,4 +1,4 @@
-import { jest } from '@jest/globals';
+import { describe, expect, it, vi } from 'vitest';
 
 import {
   createNode,
@@ -27,8 +27,8 @@ describe('linkedList', () => {
       const b = createNode('B', c);
       const a = createNode('A', b);
 
-      // const logger = jest.fn((val) => console.log('val', val));
-      const logger = jest.fn();
+      // const logger = vi.fn((val) => console.log('val', val));
+      const logger = vi.fn();
 
       printNodes(a, logger);
 
@@ -112,7 +112,7 @@ describe('linkedList', () => {
   describe('insertNodeAtEnd', () => {
     it('inserts a new node at the end of the linked list', () => {
       const linkedList = createLinkedList(['a', 'b', 'c', 'd']);
-      const result = insertNodeAtEnd(linkedList, 'e');
+      const result = insertNodeAtEnd(linkedList!, 'e');
       expect(prettyPrint(result)).toBe('a -> b -> c -> d -> e');
     });
   });

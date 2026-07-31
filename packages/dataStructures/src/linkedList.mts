@@ -1,4 +1,9 @@
-export const createNode = (value, next = null) => ({
+export type ListNode<T> = {
+  value: T;
+  next: ListNode<T> | null;
+};
+
+export const createNode = <T,>(value: T, next: ListNode<T> | null = null): ListNode<T> => ({
   value,
   next,
 });
@@ -6,7 +11,7 @@ export const createNode = (value, next = null) => ({
 /**
  * iterative version
  */
-export const printNodesIter = (head, logger) => {
+export const printNodesIter = <T,>(head: ListNode<T> | null, logger: (value: T) => void): void => {
   let current = head;
 
   while (current !== null) {
@@ -15,7 +20,7 @@ export const printNodesIter = (head, logger) => {
   }
 };
 
-export const printNodes = (head, logger) => {
+export const printNodes = <T,>(head: ListNode<T> | null, logger: (value: T) => void): void => {
   if (head === null) {
     return;
   }
@@ -25,9 +30,9 @@ export const printNodes = (head, logger) => {
   printNodes(head.next, logger);
 };
 
-export const linkedListValues2 = (head) => {
+export const linkedListValues2 = <T,>(head: ListNode<T> | null): T[] => {
   let current = head;
-  const values = [];
+  const values: T[] = [];
 
   while (current !== null) {
     values.push(current.value);
@@ -37,10 +42,10 @@ export const linkedListValues2 = (head) => {
   return values;
 };
 
-export const linkedListValues = (head) => {
-  const values = [];
+export const linkedListValues = <T,>(head: ListNode<T> | null): T[] => {
+  const values: T[] = [];
 
-  const fillValues = (node) => {
+  const fillValues = (node: ListNode<T> | null): void => {
     if (node !== null) {
       values.push(node.value);
       fillValues(node.next);
@@ -52,7 +57,7 @@ export const linkedListValues = (head) => {
   return values;
 };
 
-export const sumLinkedListIter = (head) => {
+export const sumLinkedListIter = (head: ListNode<number> | null): number => {
   let current = head;
   let sum = 0;
 
@@ -64,7 +69,7 @@ export const sumLinkedListIter = (head) => {
   return sum;
 };
 
-export const sumLinkedList = (node) => {
+export const sumLinkedList = (node: ListNode<number> | null): number => {
   if (node === null) {
     return 0;
   }
@@ -72,20 +77,20 @@ export const sumLinkedList = (node) => {
   return node.value + sumLinkedList(node.next);
 };
 
-export const findTargetIter = (node, target) => {
+export const findTargetIter = <T,>(node: ListNode<T> | null, target: T): boolean => {
   let current = node;
 
   while (current !== null) {
     if (current.value === target) {
       return true;
     }
-    current = node.next;
+    current = current.next;
   }
 
   return false;
 };
 
-export const findTarget = (node, target) => {
+export const findTarget = <T,>(node: ListNode<T> | null, target: T): boolean => {
   if (node === null) {
     return false;
   }
@@ -97,7 +102,7 @@ export const findTarget = (node, target) => {
   return findTarget(node.next, target);
 };
 
-export const getNodeValueAtIndexIter = (node, index) => {
+export const getNodeValueAtIndexIter = <T,>(node: ListNode<T> | null, index: number): T | null => {
   let current = node;
 
   let count = 0;
@@ -115,7 +120,7 @@ export const getNodeValueAtIndexIter = (node, index) => {
   return null;
 };
 
-export const getNodeValueAtIndex = (node, index) => {
+export const getNodeValueAtIndex = <T,>(node: ListNode<T> | null, index: number): T | null => {
   if (node === null) {
     return null;
   }
@@ -145,11 +150,7 @@ export const getNodeValueAtIndex = (node, index) => {
 
 // print(...values);
 
-/**
- *
- * @param {string[]} values
- */
-export const createLinkedListIter = (values) => {
+export const createLinkedListIter = (values: string[]): ListNode<string | undefined> => {
   const head = createNode(values[0]?.toUpperCase());
   let current = head;
 
@@ -163,18 +164,14 @@ export const createLinkedListIter = (values) => {
   return head;
 };
 
-/**
- *
- * @param {string[]} values
- */
-export const createLinkedList = (values) => {
-  const buildList = (index) => {
+export const createLinkedList = (values: string[]): ListNode<string> | undefined => {
+  const buildList = (index: number): ListNode<string> | undefined => {
     if (index === values.length) {
       return;
     }
     const node = createNode(values[index]);
 
-    node.next = buildList((index += 1));
+    node.next = buildList((index += 1)) as ListNode<string> | null;
 
     return node;
   };
@@ -182,7 +179,7 @@ export const createLinkedList = (values) => {
   return buildList(0);
 };
 
-export const prettyPrintIter = (linkedList) => {
+export const prettyPrintIter = <T,>(linkedList: ListNode<T> | null | undefined): string => {
   let current = linkedList;
 
   let result = '';
@@ -199,10 +196,10 @@ export const prettyPrintIter = (linkedList) => {
   return result;
 };
 
-export const prettyPrint = (linkedList) => {
+export const prettyPrint = <T,>(linkedList: ListNode<T> | null | undefined): string => {
   let result = '';
 
-  const helper = (node) => {
+  const helper = (node: ListNode<T> | null | undefined): string | undefined => {
     if (node == null) {
       return result;
     }
@@ -220,7 +217,7 @@ export const prettyPrint = (linkedList) => {
   return result;
 };
 
-export const insertNodeAtEndIter = (linkedList, value) => {
+export const insertNodeAtEndIter = <T,>(linkedList: ListNode<T>, value: T): ListNode<T> => {
   let current = linkedList;
 
   while (current.next) {
@@ -232,8 +229,8 @@ export const insertNodeAtEndIter = (linkedList, value) => {
   return linkedList;
 };
 
-export const insertNodeAtEnd = (linkedList, value) => {
-  const helper = (node) => {
+export const insertNodeAtEnd = <T,>(linkedList: ListNode<T>, value: T): ListNode<T> => {
+  const helper = (node: ListNode<T>): ListNode<T> => {
     if (node.next == null) {
       return node;
     }

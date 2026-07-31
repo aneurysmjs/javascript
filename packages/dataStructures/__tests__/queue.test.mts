@@ -1,14 +1,19 @@
-import { jest } from '@jest/globals';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import createQueue from '../src/queue';
+import createQueue from '../src/queue.mjs';
 
-let queue = [];
+type User = {
+  name: string;
+  special: string;
+};
+
+let queue: ReturnType<typeof createQueue<User>>;
 
 beforeEach(() => {
-  queue = createQueue();
+  queue = createQueue<User>();
 });
 
-const user = {
+const user: User = {
   name: 'Miro',
   special: 'Flash grenade',
 };
@@ -22,8 +27,8 @@ describe('queue', () => {
     expect(queue).toHaveProperty('isEmpty');
   });
   test('adds a new item', () => {
-    const mockEnqueue = jest.spyOn(queue, 'enqueue');
-    const user = {
+    const mockEnqueue = vi.spyOn(queue, 'enqueue');
+    const user: User = {
       name: 'Miro',
       special: 'Flash grenade',
     };
@@ -38,7 +43,7 @@ describe('queue', () => {
   });
 
   test('queue', () => {
-    const mockEnqueue = jest.spyOn(queue, 'enqueue');
+    const mockEnqueue = vi.spyOn(queue, 'enqueue');
 
     expect(queue.length()).toBe(0);
     expect(mockEnqueue).toHaveBeenCalledTimes(0);
@@ -56,7 +61,7 @@ describe('queue', () => {
 
   describe('dequeue', () => {
     test('dequeues an item', () => {
-      const mockDequeue = jest.spyOn(queue, 'dequeue');
+      const mockDequeue = vi.spyOn(queue, 'dequeue');
 
       queue.enqueue(user);
       expect(queue.length()).toBe(1);

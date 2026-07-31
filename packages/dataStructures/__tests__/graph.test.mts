@@ -1,11 +1,13 @@
-import makeGraph from '../src/graph';
+import { beforeEach, describe, expect, test } from 'vitest';
 
-let graphAPI = {};
+import makeGraph, { type AdjacencyList } from '../src/graph.mjs';
 
-let graph = new Map();
+let graphAPI: ReturnType<typeof makeGraph>;
+
+let graph: AdjacencyList = new Map();
 
 const nodes = ['a', 'b', 'c', 'd', 'e', 'f'];
-const destinations = [['b', 'c'], ['d'], ['e'], ['f'], [], []];
+const destinations: string[][] = [['b', 'c'], ['d'], ['e'], ['f'], [], []];
 
 beforeEach(() => {
   graphAPI = makeGraph();
@@ -55,17 +57,15 @@ describe('Graph', () => {
   });
 
   test('DFS traverse', () => {
-    const result = [];
+    const result: string[] = [];
     graphAPI.depthFirstSearch('a', (node) => result.push(node));
 
     expect(result).toStrictEqual(['a', 'b', 'd', 'f', 'c', 'e']);
   });
 
   test('BFS traverse', () => {
-    const result = [];
+    const result: string[] = [];
     graphAPI.breathFirstSearch('a', (node) => result.push(node));
-
-    console.log('result', result);
 
     expect(result).toStrictEqual(['a', 'b', 'c', 'd', 'e', 'f']);
   });

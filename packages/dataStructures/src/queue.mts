@@ -1,22 +1,17 @@
-export default function createQueue() {
-  const queue = [];
+export default function createQueue<T>() {
+  const queue: T[] = [];
 
   /**
    * @description Adds a new item to the beggining of the array.
-   * @template T
-   * @param {T} item
-   * @returns void
    */
-  const enqueue = (item) => queue.unshift(item);
+  const enqueue = (item: T): void => {
+    queue.unshift(item);
+  };
 
   /**
    * @description Removes the last item in the array.
-   *
-   * @template T
-   * @param {T} item
-   * @returns void | T
    */
-  const dequeue = () => {
+  const dequeue = (): T | undefined => {
     if (queue.length === 0) {
       return undefined;
     }
@@ -26,11 +21,8 @@ export default function createQueue() {
 
   /**
    * @description Returns the item that's next to be removed.
-   *
-   * @template T
-   * @returns T
    */
-  const peek = () => {
+  const peek = (): T | undefined => {
     if (queue.length === 0) {
       return undefined;
     }
@@ -40,16 +32,13 @@ export default function createQueue() {
 
   /**
    * @description Returns the amount of items in the array.
-   *
-   * @returns number
    */
-  const length = () => queue.length;
+  const length = (): number => queue.length;
 
   /**
    * @description Checks whether the queue is empty.
-   * @returns boolean
    */
-  const isEmpty = () => queue.length === 0;
+  const isEmpty = (): boolean => queue.length === 0;
 
   return {
     enqueue,

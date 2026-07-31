@@ -1,11 +1,13 @@
-import { createBST, treeNode, extractNodes, printNodes } from '../src/binarySearchTree';
+import { beforeEach, describe, expect, test } from 'vitest';
 
-let bstAPI = {};
+import { createBST, treeNode, type TreeNode } from '../src/binarySearchTree.mjs';
+
+let bstAPI: ReturnType<typeof createBST>;
 
 const exampleBstApi = createBST();
 
-let bstExample = {};
-let exampleApi = {};
+let bstExample: TreeNode;
+let exampleApi: ReturnType<typeof createBST>;
 beforeEach(() => {
   bstAPI = createBST();
 
@@ -21,7 +23,7 @@ beforeEach(() => {
   exampleApi.insert(14);
   exampleApi.insert(22);
 
-  bstExample = exampleApi.getRoot();
+  bstExample = exampleApi.getRoot()!;
 });
 
 describe('Binary Search Tree', () => {
@@ -67,7 +69,7 @@ describe('Binary Search Tree', () => {
   });
 
   test('breath-first search', () => {
-    const bfsNodes = [];
+    const bfsNodes: number[] = [];
     const testTree = treeNode(
       1,
       treeNode(2, treeNode(4), treeNode(5)),
@@ -137,14 +139,14 @@ describe('Binary Search Tree', () => {
       const hasNode6 = exampleBstApi.includes(bstExample, 6);
       expect(hasNode6).toBe(true);
 
-      const deletedNode = exampleApi.remove(6);
+      exampleApi.remove(6);
 
       const hasNotNode6 = exampleBstApi.includes(bstExample, 6);
       expect(hasNotNode6).toBe(false);
 
       const parentOf6 = exampleApi.lookUp(7);
 
-      expect(parentOf6.left.value).toBe(1);
+      expect(parentOf6?.left?.value).toBe(1);
     });
 
     test('case 3 - remove node with two childs', () => {

@@ -1,57 +1,46 @@
-/**
- * @typedef {Map<string, string[]>} AdjacencyList
- */
+export type AdjacencyList = Map<string, string[]>;
 
 export default function createGraph() {
-  /**@type AdjacencyList */
-  const adjacencyList = new Map();
+  const adjacencyList: AdjacencyList = new Map();
 
   return {
     /**
      * @description gets the graph.
-     *
-     * @returns AdjacencyList
      */
-    getGraph() {
+    getGraph(): AdjacencyList {
       return adjacencyList;
     },
     /**
      * @description adds a node to the graph.
-     *
-     * @param {string} node
      */
-    addNode(node) {
+    addNode(node: string): void {
       adjacencyList.set(node, []);
     },
     /**
      * @description adds an edge to the graph.
-     *
-     * @param {string} source
-     * @param {string[]} value
      */
-    addEdge(source, value) {
+    addEdge(source: string, value: string[]): void {
       adjacencyList.set(source, value);
     },
     /**
      * @description traverse in depth first
      *
-     * @param {string} node - starting node
-     * @callback fn
+     * @param node - starting node
      */
-    depthFirstSearch(node, fn) {
+    depthFirstSearch(node: string, fn: (node: string) => void): void {
       fn(node);
-      for (const neighbor of adjacencyList.get(node)) {
+      for (const neighbor of adjacencyList.get(node) ?? []) {
         this.depthFirstSearch(neighbor, fn);
       }
     },
-    depthFirstSearchIter(node, fn) {
+    depthFirstSearchIter(node: string, fn: (node: string) => void): void {
       const stack = [node];
 
       while (stack.length > 0) {
-        const current = stack.pop();
+        const current = stack.pop()!;
         fn(current);
 
-        for (const neighbor of adjacencyList.get(current)) {
+        for (const neighbor of adjacencyList.get(current) ?? []) {
           stack.push(neighbor);
         }
       }
@@ -59,18 +48,17 @@ export default function createGraph() {
     /**
      * @description traverse in breath first
      *
-     * @param {string} node - starting node
-     * @param {(node) => void)} fn
+     * @param node - starting node
      */
-    breathFirstSearch(node, fn) {
+    breathFirstSearch(node: string, fn: (node: string) => void): void {
       const queue = [node];
 
       while (queue.length > 0) {
-        const current = queue.shift();
+        const current = queue.shift()!;
 
         fn(current);
 
-        for (const neighbor of adjacencyList.get(current)) {
+        for (const neighbor of adjacencyList.get(current) ?? []) {
           queue.push(neighbor);
         }
       }

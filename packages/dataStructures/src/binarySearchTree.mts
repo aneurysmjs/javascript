@@ -1,77 +1,59 @@
-/**
- * @typedef {Object} TreeNode
- * @property {number} value -
- * @property {TreeNode} left -
- * @property {TreeNode} right -
- */
+export type TreeNode = {
+  value: number;
+  left: TreeNode | null;
+  right: TreeNode | null;
+};
 
 /**
  * @description checks whether or not a value is null,
- *
- * @param {*} value
- * @returns boolean
  */
-function isNull(value) {
+function isNull(value: unknown): value is null {
   return value === null;
 }
 
 /**
  * @description checks whether or not the node is a leaf node,
- *
- * @param {TreeNode} node
- * @returns boolean
  */
-function isLeafNode(node) {
+function isLeafNode(node: TreeNode): boolean {
   return node.left === null && node.right === null;
 }
 
 /**
  * @description checks whether or not the node has only one child.
- *
- * @param {TreeNode} node
- * @returns boolean
  */
-function hasOneChild(node) {
-  return (node.left === null && node.right) || (node.left && node.right === null);
+function hasOneChild(node: TreeNode): boolean {
+  return (node.left === null && node.right !== null) || (node.left !== null && node.right === null);
 }
 
 /**
  * @description checks whether or not the node has two childs.
- *
- * @param {TreeNode} node
- * @returns boolean
  */
-function hasTwoChilds(node) {
-  return node.left && node.right;
+function hasTwoChilds(node: TreeNode): boolean {
+  return node.left !== null && node.right !== null;
 }
 
 /**
  * @description find most further node.
- *
- * @param {TreeNode} node
- * @param {'left' | 'right'} side
- * @returns TreeNode
  */
-function findDeep(node, side) {
+function findDeep(node: TreeNode, side: 'left' | 'right'): TreeNode {
+  const child = node[side];
+
   // here we reach node's end (leaf)
-  if (node[side] === null) {
+  if (child === null) {
     return node;
   }
 
-  return findDeep(node[side], side);
+  return findDeep(child, side);
 }
 
 /**
  * BFS
- *
- * @param {TreeNode} root
- * @param {TreeNode} node
  */
-function findParentBFS(root, node) {
-  const queue = [root];
+function findParentBFS(root: TreeNode, node: TreeNode): TreeNode | undefined {
+  const queue: TreeNode[] = [root];
 
   while (queue.length) {
-    const currentNode = queue.shift();
+    const currentNode = queue.shift()!;
     if (currentNode.left === node || currentNode.right === node) {
       return currentNode;
     }
@@ -88,35 +70,33 @@ function findParentBFS(root, node) {
 
 /**
  * DFS
- * @param {TreeNode} root
- * @param {TreeNode} node
  */
-function findParentDFS(root, node) {
-  const helper = (node, parent, target) => {
-    if (!node) {
+function findParentDFS(root: TreeNode, node: TreeNode): TreeNode | null {
+  const helper = (
+    current: TreeNode | null,
+    parent: TreeNode | null,
+    target: TreeNode,
+  ): TreeNode | null => {
+    if (!current) {
       return null;
     }
 
-    if (node === target) {
+    if (current === target) {
       return parent;
     }
 
-    return helper(node.left, node, target) || helper(node.right, node, target);
+    return helper(current.left, current, target) || helper(current.right, current, target);
   };
 
   return helper(root, null, node);
 }
 
-/**
- *
- * @param {TreeNode[][]} levels
- */
-export function printNodes(levels) {
+export function printNodes(levels: (number | string)[][]): void {
   let result = '';
   for (let i = 0; i < levels.length; i += 1) {
     const spacerSize = Math.ceil(40 / ((i + 2) * 2));
     const spacer = new Array(spacerSize + 1).join('  ');
-    const lines = levels[i].map((_, index) => {
+    const lines: string[] = levels[i].map((_, index) => {
       return index % 2 === 0 ? ' /' : '\\ ';
     });
     levels[i].unshift('');
@@ -149,13 +129,8 @@ export function printNodes(levels) {
  * // to
  *
  * [[4], [3, 6]]
- *
- * @param {TreeNode} node
- * @param {number} [depth=0]
- * @param {TreeNode[][]} [levels=[]]
- * @returns
  */
-export function extractNodes(node, depth = 0, levels = []) {
+export function extractNodes(node: TreeNode, depth = 0, levels: number[][] = []): number[][] {
   //traverse left branch
   if (node.left !== null) {
     levels = extractNodes(node.left, depth + 1, levels);
@@ -172,14 +147,11 @@ export function extractNodes(node, depth = 0, levels = []) {
   return levels;
 }
 
-/**
- *
- * @param {TreeNode['value']} value
- * @param {TreeNode} left
- * @param {TreeNode} right
- * @returns TreeNode
- */
-export function treeNode(value, left = null, right = null) {
+export function treeNode(
+  value: TreeNode['value'],
+  left: TreeNode | null = null,
+  right: TreeNode | null = null,
+): TreeNode {
   return {
     value,
     left,
@@ -191,11 +163,9 @@ export function treeNode(value, left = null, right = null) {
  * @description A valid binary search tree (BST) has ALL left children with
  * values less than the parent node, and ALL right children with values greater
  * than the parent node.
- *
- * @param {TreeNode} root
  */
-const isValidBST = (root) => {
-  const helper = (node, min, max) => {
+const isValidBST = (root: TreeNode | null): boolean => {
+  const helper = (node: TreeNode | null, min: number, max: number): boolean => {
     if (!node) {
       return true;
     }
@@ -211,12 +181,10 @@ const isValidBST = (root) => {
 };
 
 /**
- * @descriptionv visit node first then the left sub-tree and then
+ * @description visit node first then the left sub-tree and then
  * the right sub-tree.
- *
- * @param {TreeNode} root
  */
-function preorder(root) {
+function preorder(root: TreeNode | null): number[] {
   if (isNull(root)) {
     return [];
   }
@@ -226,10 +194,8 @@ function preorder(root) {
 /**
  * @description visit first the left sub-tree then the node and then
  * the right sub-tree.
- *
- * @param {TreeNode} root
  */
-function inorder(root) {
+function inorder(root: TreeNode | null): number[] {
   if (isNull(root)) {
     return [];
   }
@@ -239,45 +205,39 @@ function inorder(root) {
 /**
  * @description  visit left sub-tree then right sub-tree and then
  * the node
- *
- * @param {TreeNode} root
  */
-function postorder(root) {
+function postorder(root: TreeNode | null): number[] {
   if (isNull(root)) {
     return [];
   }
   return [...postorder(root.left), ...postorder(root.right), root.value];
 }
 
-function invertBST(tree) {
+function invertBST(tree: TreeNode | null): void {
   if (tree === null) {
     return;
   }
 
-  const temp = currNode.left;
-  currNode.left = currNode.right;
-  currNode.right = temp;
-  invertBST(currNode.left);
-  invertBST(currNode.right);
+  const temp = tree.left;
+  tree.left = tree.right;
+  tree.right = temp;
+  invertBST(tree.left);
+  invertBST(tree.right);
 }
 
 /**
  * @description visits all nodes level by level
- *
- * @param {*} root
- * @param {*} callback
- * @returns
  */
-function breadthFirstTraversal(root, callback) {
+function breadthFirstTraversal(root: TreeNode | null, callback: (value: number) => void): void {
   if (root == null) {
     return;
   }
 
   // we start our traversal with the root of the tree
-  const queue = [root];
+  const queue: TreeNode[] = [root];
 
   while (queue.length > 0) {
-    const node = queue.shift();
+    const node = queue.shift()!;
     const value = node.value;
 
     callback(value);
@@ -300,33 +260,23 @@ function breadthFirstTraversal(root, callback) {
 /**
  * @description finds the left most node in tree
  * searching starts from given node
- *
- * @param {TreeNode} node
- * @returns TreeNode
  */
-function findLeftMost(node) {
+function findLeftMost(node: TreeNode): TreeNode {
   return findDeep(node, 'left');
 }
 
 /**
  * @description finds the right most node in tree
  * searching starts from given node
- *
- * @param {TreeNode} node
- * @returns TreeNode
  */
-function findRightMost(node) {
+function findRightMost(node: TreeNode): TreeNode {
   return findDeep(node, 'right');
 }
 
 /**
  * @description checks whether or not a node exists on the tree.
- *
- * @param {TreeNode} root
- * @param {number} target
- * @return boolean
  */
-function includes(root, target) {
+function includes(root: TreeNode | null, target: number): boolean {
   if (isNull(root)) {
     return false;
   }
@@ -340,10 +290,8 @@ function includes(root, target) {
 
 /**
  * @description finds the minimum value in the tree
- * @param {TreeNode} node
- * @returns boolean
  */
-function findMinValue(node) {
+function findMinValue(node: TreeNode | null): number {
   if (node === null) {
     return Infinity;
   }
@@ -353,10 +301,8 @@ function findMinValue(node) {
 
 /**
  * @description finds the maximum value in the tree
- * @param {TreeNode} node
- * @returns boolean
  */
-function findMaxValue(node) {
+function findMaxValue(node: TreeNode | null): number {
   if (node === null) {
     return -Infinity;
   }
@@ -365,18 +311,14 @@ function findMaxValue(node) {
 }
 
 export function createBST() {
-  let root = null;
+  let root: TreeNode | null = null;
 
   return {
-    /**
-     *
-     * @returns
-     */
-    getRoot() {
+    getRoot(): TreeNode | null {
       return root;
     },
 
-    insert(data) {
+    insert(data: number) {
       if (isNull(root)) {
         // it means this is the first time insert has been called to insert data into the tree.
         // Therefore, a new Node will take the data as its value and will be inserted as the
@@ -387,10 +329,8 @@ export function createBST() {
 
       /**
        * @description method that will search the tree to see where the data should go.
-       *
-       * @param {TreeNode} node
        */
-      const searchTree = (node) => {
+      const searchTree = (node: TreeNode): void => {
         /**
          * checks if our data is less than the current node’s value and if there is a value
          * to the left side of the current node.
@@ -413,18 +353,18 @@ export function createBST() {
       return searchTree(root);
     },
 
-    lookUp(value) {
+    lookUp(value: number): TreeNode | undefined {
       if (isNull(root)) {
         return undefined;
       }
 
-      const look = (node) => {
+      const look = (node: TreeNode): TreeNode | undefined => {
         // is value is less than node's value, go left
         if (value < node.value) {
-          return look(node.left);
+          return look(node.left!);
           // is value is greather than node's value, go right
         } else if (value > node.value) {
-          return look(node.right);
+          return look(node.right!);
           // is value is equal to node's value, we found it!
         } else if (value === node.value) {
           return node;
@@ -434,33 +374,31 @@ export function createBST() {
       return look(root);
     },
 
-    remove(value) {
+    remove(value: number): TreeNode | undefined {
       if (isNull(root)) {
         return undefined;
       }
 
       /**
        * 1) traverse the tree, find node and its parent
-       * @param {TreeNode} node
-       * @param {TreeNode} [parentNode=null]
        */
-      const removeNode = (node, parentNode = null) => {
+      const removeNode = (node: TreeNode, parentNode: TreeNode | null = null): TreeNode | undefined => {
         if (value < node.value) {
-          return removeNode(node.left, node);
+          return removeNode(node.left!, node);
         } else if (value > node.value) {
-          return removeNode(node.right, node);
+          return removeNode(node.right!, node);
           // we've found a match, so we can proceed to deletion.
         } else if (value === node.value) {
           // return { node, parentNode };
 
           if (isLeafNode(node)) {
             // node is the left child of parent
-            if (node.value === parentNode.left?.value) {
-              parentNode.left = null; // remove left node from parent
+            if (node.value === parentNode!.left?.value) {
+              parentNode!.left = null; // remove left node from parent
             }
             // node is the right child of parent
-            if (node.value === parentNode.right?.value) {
-              parentNode.right = null; // remove right node from parent
+            if (node.value === parentNode!.right?.value) {
+              parentNode!.right = null; // remove right node from parent
             }
 
             return node;
@@ -469,36 +407,36 @@ export function createBST() {
             // or right-side of parent
 
             // node is left-child of parent
-            if (node.value === parentNode.left.value) {
+            if (node.value === parentNode!.left!.value) {
               // we replace parent's left-side child with
               // the node's side child
 
               // it means `node.right` if the node's only child
               if (isNull(node.left)) {
-                parentNode.right = node.right;
+                parentNode!.right = node.right;
               }
 
               // it means `node.left` if the node's only child
               if (isNull(node.right)) {
-                parentNode.left = node.left;
+                parentNode!.left = node.left;
               }
 
               return node;
             }
 
             // node is right-child of parent
-            if (node.value === parentNode.right.value) {
+            if (node.value === parentNode!.right!.value) {
               // we replace parent's right-side child with
               // the node's right-side child
 
               // it means `node.right` if the node's only child
               if (isNull(node.left)) {
-                parentNode.right = node.right;
+                parentNode!.right = node.right;
               }
 
               // it means `node.left` if the node's only child
               if (isNull(node.right)) {
-                parentNode.left = node.left;
+                parentNode!.left = node.left;
               }
 
               return node;
@@ -514,13 +452,13 @@ export function createBST() {
             const smallest = findMinValue(node.right);
 
             // node is a left subtree of parent
-            if (node.value === parentNode.left.value) {
-              parentNode.left = treeNode(largest, node.left, node.right);
+            if (node.value === parentNode!.left!.value) {
+              parentNode!.left = treeNode(largest, node.left, node.right);
             }
 
             // node is a right subtree of parent
-            if (node.value === parentNode.right.value) {
-              parentNode.right = treeNode(largest, node.left, node.right);
+            if (node.value === parentNode!.right!.value) {
+              parentNode!.right = treeNode(largest, node.left, node.right);
             }
 
             return node;

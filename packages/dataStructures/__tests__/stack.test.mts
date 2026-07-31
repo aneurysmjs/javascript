@@ -1,11 +1,11 @@
-import { jest } from '@jest/globals';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import createStack from '../src/stack';
+import createStack from '../src/stack.mjs';
 
-let stack = [];
+let stack: ReturnType<typeof createStack<string>>;
 
 beforeEach(() => {
-  stack = createStack();
+  stack = createStack<string>();
 });
 
 describe('queue', () => {
@@ -18,7 +18,7 @@ describe('queue', () => {
   });
 
   test('push - adds items in order', () => {
-    const mockPush = jest.spyOn(stack, 'push');
+    const mockPush = vi.spyOn(stack, 'push');
     stack.push('a');
     stack.push('b');
     stack.push('c');
