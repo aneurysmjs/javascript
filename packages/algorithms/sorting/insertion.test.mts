@@ -1,4 +1,6 @@
-import insertionSort from './insertion.js';
+import { describe, expect, it } from 'vitest';
+
+import insertionSort from './insertion.mjs';
 
 const nums = [3, 5, 9, 6, 2, 1];
 

@@ -1,22 +1,10 @@
-/**
- *
- * @param {any[]} items
- * @param {number} leftIndex
- * @param {number} rightIndex
- */
-function swap(items, leftIndex, rightIndex) {
+function swap(items: number[], leftIndex: number, rightIndex: number): void {
   const temp = items[leftIndex];
   items[leftIndex] = items[rightIndex];
   items[rightIndex] = temp;
 }
 
-/**
- *
- * @param {any[]} items
- * @param {number} left
- * @param {number} right
- */
-function partition(items, left, right) {
+function partition(items: number[], left: number, right: number): number {
   const middle = Math.floor((right + left) / 2);
   const pivot = items[middle]; // middle element
   let i = left; // left pointer
@@ -42,13 +30,7 @@ function partition(items, left, right) {
   return i;
 }
 
-/**
- *
- * @param {any[]} items
- * @param {number} left
- * @param {number} right
- */
-export default function quickSort(items, left, right) {
+export default function quickSort(items: number[], left: number, right: number): number[] {
   let index;
 
   if (items.length > 1) {

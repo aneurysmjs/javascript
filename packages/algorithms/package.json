@@ -11,7 +11,7 @@
     "url": "git+https://github.com/aneurysmjs/javascript.git"
   },
   "scripts": {
-    "test": "pnpm -w t -- -c=\"${INIT_CWD}/packages/algorithms/jest.config.mjs\""
+    "test": "pnpm -w exec vitest run --project algorithms"
   },
   "bugs": {
     "url": "https://github.com/aneurysmjs/javascript/issues"

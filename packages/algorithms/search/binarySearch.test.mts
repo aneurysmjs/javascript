@@ -1,4 +1,6 @@
-import { binarySearch } from './binarySearch';
+import { describe, expect, it } from 'vitest';
+
+import { binarySearch } from './binarySearch.mjs';
 
 const arr = [0, 1, 21, 33, 45, 45, 61, 71, 72, 73];
 

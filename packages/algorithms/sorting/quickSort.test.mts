@@ -1,4 +1,6 @@
-import quickSort from './quickSort';
+import { describe, expect, it } from 'vitest';
+
+import quickSort from './quickSort.mjs';
 
 const arr = [8, 5, 2, 9, 5, 6, 3];
 

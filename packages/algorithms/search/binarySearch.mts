@@ -1,10 +1,4 @@
-/**
- *
- * @param {any[]} arr
- * @param {any} target
- * @returns
- */
-export const binarySearch = (arr, target) => {
+export const binarySearch = (arr: number[], target: number): number => {
   let left = 0;
   let right = arr.length - 1;
 

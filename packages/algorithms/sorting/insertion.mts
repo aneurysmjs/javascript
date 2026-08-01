@@ -1,4 +1,4 @@
-export default function insertionSort(arr) {
+export default function insertionSort(arr: number[]): number[] {
   for (let i = 1; i < arr.length; i += 1) {
     let key = arr[i];
     let j = i - 1;
