@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import tokenizer from './tokenizer.mjs';
 
 describe('tokenizer', () => {

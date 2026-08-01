@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import parser from './parser.mjs';
 
 describe('parser', () => {
@@ -28,8 +30,18 @@ describe('parser', () => {
               value: '2',
             },
             {
-              type: 'NumberLiteral',
-              value: '2',
+              type: 'CallExpression',
+              name: 'subtract',
+              arguments: [
+                {
+                  type: 'NumberLiteral',
+                  value: '4',
+                },
+                {
+                  type: 'NumberLiteral',
+                  value: '2',
+                },
+              ],
             },
           ],
         },
