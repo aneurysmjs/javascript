@@ -1,15 +1,11 @@
-/**
- * when using native ES Modules, jest is not a global object anymore
- * @see https://github.com/facebook/jest/issues/9430#issuecomment-616232029
- */
-import { jest } from '@jest/globals';
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { makeRangeIterator, makeIteratorException } from './interator';
+import { makeRangeIterator, makeIteratorException } from './interator.mjs';
 
 // make an iterator
 const range = makeRangeIterator();
 
-let myIterator;
+let myIterator = range[Symbol.iterator]();
 
 beforeEach(() => {
   // console.log('beforeEach', beforeEach);
@@ -45,7 +41,7 @@ describe('iterator', () => {
   it('should throw an exception', () => {
     const exceptionIterator = makeIteratorException();
 
-    let exception = exceptionIterator[Symbol.iterator]();
+    const exception = exceptionIterator[Symbol.iterator]();
 
     expect(exception.next).toThrow();
   });

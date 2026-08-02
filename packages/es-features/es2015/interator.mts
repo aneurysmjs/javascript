@@ -1,5 +1,5 @@
-let current;
-let last;
+let current: number;
+let last: number;
 
 export function makeRangeIterator(from = 0, to = 3) {
   current = from;
