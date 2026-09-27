@@ -11,7 +11,7 @@ describe('Two number sum', () => {
     });
   });
 
-  describe('using a hash table ', () => {
+  describe('using a hash table', () => {
     const result = twoNumberSum(nums, targetSum);
     it('should return [-1, 11]', () => {
       expect(result).toStrictEqual([-1, 11]);

@@ -83,7 +83,7 @@ const StarWarsForm: FC = () => {
       if (value === '') {
         setCharacterNames([]);
       }
-    } catch (error) {}
+    } catch {}
   }, 300);
 
   console.log('isRequestGoing', isRequestGoing);

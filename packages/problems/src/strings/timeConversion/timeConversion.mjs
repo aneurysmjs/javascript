@@ -32,6 +32,7 @@ export default function timeConversion(s) {
  * @param {string} s
  * @returns
  */
+// oxlint-disable-next-line no-unused-vars -- alternative implementation kept for reference
 function timeConversionOther(s) {
   const ampmPart = s.slice(-2);
   const timePart = s.slice(0, -2);

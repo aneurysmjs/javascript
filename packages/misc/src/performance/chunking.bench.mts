@@ -1,4 +1,4 @@
-import { describe, it, expect, bench, vi } from 'vitest';
+import { describe, bench } from 'vitest';
 import { chunking, noChunking } from './chunking.mjs';
 
 let largeData = [];

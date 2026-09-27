@@ -1,10 +1,8 @@
 import { beforeEach, describe, expect, test } from 'vitest';
 
-import makeGraph, { type AdjacencyList } from '../src/graph.mjs';
+import makeGraph from '../src/graph.mjs';
 
 let graphAPI: ReturnType<typeof makeGraph>;
-
-let graph: AdjacencyList = new Map();
 
 const nodes = ['a', 'b', 'c', 'd', 'e', 'f'];
 const destinations: string[][] = [['b', 'c'], ['d'], ['e'], ['f'], [], []];
@@ -18,7 +16,6 @@ beforeEach(() => {
     graphAPI.addEdge(node, destinations[index]);
   });
 
-  graph = graphAPI.getGraph();
 });
 
 describe('Graph', () => {

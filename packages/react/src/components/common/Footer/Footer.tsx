@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid -- placeholder links */
 import type { FunctionComponent } from 'react';
 
 const Footer: FunctionComponent = () => (

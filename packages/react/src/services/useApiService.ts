@@ -1,18 +1,6 @@
 import { useEffect, useState, Dispatch, SetStateAction, useReducer, useRef, Reducer } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 
-interface UseApiMeta {
-  data: {
-    foo: never[];
-  };
-  isLoading: boolean;
-  isError: boolean;
-}
-
-type AnyAction = { type: string };
-
-type Action = { payload?: unknown } & AnyAction;
-
 export interface FetchState<T = unknown> {
   isLoading: boolean;
   isError: boolean;
@@ -84,7 +72,7 @@ const useApi = <T>(
         const result = await axios(url, configRef.current);
 
         dispatch({ type: FETCH_SUCCESS, payload: result.data });
-      } catch (error) {
+      } catch {
         dispatch({ type: FETCH_FAILURE });
       }
     };

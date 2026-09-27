@@ -33,7 +33,7 @@ describe('StarWarsForm', () => {
     (axios.get as jest.Mock).mockResolvedValue({ data: { results: characterData } });
 
     // @ts-ignore
-    const { getByPlaceholderText, getAllByTestId, queryByTestId } = render(<StarWarsForm />);
+    const { getByPlaceholderText, queryByTestId } = render(<StarWarsForm />);
 
     const input = getByPlaceholderText('type a name');
 

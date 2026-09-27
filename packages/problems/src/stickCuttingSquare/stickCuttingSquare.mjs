@@ -5,8 +5,8 @@
  */
 export default function stickCuttingSquare(a, b) {
   // Calculate the minimum and maximum possible length of a stick
-  const minLength = Math.min(a, b);
-  const maxLength = Math.max(a, b);
+  // const minLength = Math.min(a, b);
+  // const maxLength = Math.max(a, b);
 
   // // Check if it's possible to create four equal sticks
   // if (4 * minLength > maxLength) {

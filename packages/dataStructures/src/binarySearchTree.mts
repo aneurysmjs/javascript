@@ -49,6 +49,7 @@ function findDeep(node: TreeNode, side: 'left' | 'right'): TreeNode {
 /**
  * BFS
  */
+// oxlint-disable-next-line no-unused-vars -- alternative implementation kept for reference
 function findParentBFS(root: TreeNode, node: TreeNode): TreeNode | undefined {
   const queue: TreeNode[] = [root];
 
@@ -71,6 +72,7 @@ function findParentBFS(root: TreeNode, node: TreeNode): TreeNode | undefined {
 /**
  * DFS
  */
+// oxlint-disable-next-line no-unused-vars -- alternative implementation kept for reference
 function findParentDFS(root: TreeNode, node: TreeNode): TreeNode | null {
   const helper = (
     current: TreeNode | null,
@@ -92,10 +94,9 @@ function findParentDFS(root: TreeNode, node: TreeNode): TreeNode | null {
 }
 
 export function printNodes(levels: (number | string)[][]): void {
-  let result = '';
   for (let i = 0; i < levels.length; i += 1) {
     const spacerSize = Math.ceil(40 / ((i + 2) * 2));
-    const spacer = new Array(spacerSize + 1).join('  ');
+    const spacer = '  '.repeat(spacerSize);
     const lines: string[] = levels[i].map((_, index) => {
       return index % 2 === 0 ? ' /' : '\\ ';
     });
@@ -213,6 +214,7 @@ function postorder(root: TreeNode | null): number[] {
   return [...postorder(root.left), ...postorder(root.right), root.value];
 }
 
+// oxlint-disable-next-line no-unused-vars -- alternative implementation kept for reference
 function invertBST(tree: TreeNode | null): void {
   if (tree === null) {
     return;
@@ -448,8 +450,6 @@ export function createBST() {
              */
             // find the largest value in the left-side subtree
             const largest = findMaxValue(node.left);
-            // find the smallest value in the right-side subtree
-            const smallest = findMinValue(node.right);
 
             // node is a left subtree of parent
             if (node.value === parentNode!.left!.value) {

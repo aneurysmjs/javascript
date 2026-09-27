@@ -93,6 +93,7 @@ function numberToNumberArray(num) {
  * @param {ListNode} l2
  * @returns
  */
+// oxlint-disable-next-line no-unused-vars -- alternative implementation kept for reference
 function addTwoNumbers_BAD(l1, l2) {
   const l1Values = getLinkedListValues(l1).reverse();
   const l2Values = getLinkedListValues(l2).reverse();
