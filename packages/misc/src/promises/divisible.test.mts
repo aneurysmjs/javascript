@@ -14,11 +14,9 @@ describe('divisible', () => {
   });
 
   it('reject when number is NOT divisible by 5', async () => {
-    try {
-      await divisible(13);
-    } catch (error) {
-      expect(error).toEqual('wrong');
-    }
+    const error = await divisible(13).catch((err) => err);
+
+    expect(error).toEqual('wrong');
   });
 
   it('reject when number is NOT divisible by 5 with Helper', async () => {

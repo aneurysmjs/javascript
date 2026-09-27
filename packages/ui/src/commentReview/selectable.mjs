@@ -48,17 +48,16 @@ export default function selectables({ container, itemsClass }) {
     containerEl.addEventListener('mouseup', () => {
       // Stop tracking mouse movement and perform selection check
       isDragging = false;
-      highlightSelectedItems(items);
+      highlightSelectedItems();
     });
   }
 }
 
 /**
  * Function to highlight selected items based on the drag selection
- * @param {string} itemsClass
  * @returns
  */
-function highlightSelectedItems(itemsClass) {
+function highlightSelectedItems() {
   // Get the container element
   const container = document.getElementById('container');
   if (!container) {

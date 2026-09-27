@@ -1,5 +1,6 @@
 import { memo } from 'react';
 
+/* eslint-disable react/purity -- intentionally slow render for the useDeferredValue demo */
 const SlowItem = ({ text }: { text: string }) => {
   let startTime = performance.now();
   while (performance.now() - startTime < 1) {

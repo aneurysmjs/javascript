@@ -2,10 +2,10 @@
  * @param {number[]} nums1
  * @param {number} m
  * @param {number[]} nums2
- * @param {number} n
+ * @param {number} _n
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
-export default function mergedSortedArray(nums1, m, nums2, n) {
+export default function mergedSortedArray(nums1, m, nums2, _n) {
   nums1.splice(m);
 
   nums1.push(...nums2);

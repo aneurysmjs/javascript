@@ -1,4 +1,4 @@
-import { type FunctionComponent, useState, useEffect } from 'react';
+import { type FunctionComponent, useState } from 'react';
 
 const BaseEffects: FunctionComponent = () => {
   console.log('render');

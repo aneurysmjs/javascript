@@ -11,7 +11,7 @@ const BaseDeferredValue: FunctionComponent = () => {
     console.log('deferredQuery', deferredQuery);
 
     console.log('----------');
-  }, []);
+  }, [query, deferredQuery]);
 
   return (
     <div className="tutorial">

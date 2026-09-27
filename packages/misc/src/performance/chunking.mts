@@ -19,16 +19,6 @@ export function chunking(data: number[]) {
     ...chunk.map((val) => val * 2),
   ];
 
-  const helper = (_data: number[]) => {
-    // anything left to process?
-    if (data.length > 0) {
-      // async schedule next batch
-      setTimeout(() => {
-        helper(_data);
-      }, 0);
-    }
-  };
-
   // // anything left to process?
   // if (data.length > 0) {
   //   // async schedule next batch

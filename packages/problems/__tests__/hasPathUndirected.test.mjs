@@ -1,4 +1,4 @@
-import undirectedPath, { buildGraph } from '../src/hasPathUndirected';
+import undirectedPath from '../src/hasPathUndirected';
 
 const edges = [
   ['i', 'j'],

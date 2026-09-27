@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { promises as fs } from 'node:fs';
 
 import getArgs from './getArgs.mjs';
@@ -18,15 +17,9 @@ async function hasFolder(path, folder) {
     const stat = await fs.stat(`${path}/${folder}`);
 
     return has && stat.isDirectory();
-  } catch (err) {
+  } catch {
     // throw
   }
-}
-
-function extension(element, extFilter = 'js') {
-  const extName = path.extname(element);
-
-  return extName === '.' + extFilter;
 }
 
 /**
@@ -73,9 +66,7 @@ export default async function structureFolders(path) {
       }
     }
 
-    for (const content of contents) {
-    }
-  } catch (err) {}
+  } catch {}
 }
 
 const args = getArgs();

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import deleteChildrenFromGivenNode from './deleteChildrenFromGivenNode.mjs';
 
 describe('deleteChildrenFromGivenNode', () => {
-  it('it deletes all children nodes from node 3', () => {
+  it('deletes all children nodes from node 3', () => {
     const tree = [
       { id: '1', parentIds: [] },
       { id: '2', parentIds: ['1'] },

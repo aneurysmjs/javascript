@@ -3,7 +3,7 @@
  *
  * 30px, -30px, 3.0px or 30%, -30%, 3.0%
  */
-export const cssValue = /^\-?[0-9]*\.?[0-9]+(px|%|rem|em|vh|vm)/;
+export const cssValue = /^-?[0-9]*\.?[0-9]+(px|%|rem|em|vh|vm)/;
 
 
 
@@ -19,7 +19,7 @@ export const cssValue = /^\-?[0-9]*\.?[0-9]+(px|%|rem|em|vh|vm)/;
  *
  * 1
  */
-export const uIntString = /(^[^\-]{0,1})?(^[\d]*)$/;
+export const uIntString = /(^[^-]{0,1})?(^[\d]*)$/;
 
 /**
  * unsinged integer string

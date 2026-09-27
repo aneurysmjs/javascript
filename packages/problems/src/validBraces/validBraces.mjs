@@ -78,6 +78,7 @@ const isGroupedBraces = (braces) => {
  * @param {string} bracesText
  * @returns {boolean}
  */
+// oxlint-disable-next-line no-unused-vars -- alternative implementation kept for reference
 function validBraces_bad(bracesText) {
   const braces = Array.from(bracesText);
 
