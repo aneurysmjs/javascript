@@ -9,7 +9,7 @@ const BaseDeferredValuePage: FunctionComponent = () => {
         deferred value
       </h2>
 
-      <div className="w-25 mx-auto">
+      <div className="w-1/4 mx-auto">
         <BaseDeferredValue />
       </div>
     </section>

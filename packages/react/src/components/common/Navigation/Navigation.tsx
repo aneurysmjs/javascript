@@ -6,12 +6,12 @@ const Navigation: FunctionComponent = () => {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <nav className="navbar navbar-expand-md">
-      <NavLink to="/" className="navbar-brand">
-        <h5 className="font-weight-normal m-0">Dummy</h5>
+    <nav className="flex flex-wrap items-center justify-between py-2">
+      <NavLink to="/" className="mr-4 py-1">
+        <h5 className="m-0 text-xl font-normal">Dummy</h5>
       </NavLink>
       <button
-        className="navbar-toggler"
+        className="rounded-md border px-3 py-1 md:hidden"
         type="button"
         data-toggle="collapse"
         aria-controls="navbarCollapse"
@@ -21,31 +21,31 @@ const Navigation: FunctionComponent = () => {
           setOpen(!isOpen);
         }}
       >
-        <span className="navbar-toggler-icon" />
+        <span aria-hidden="true">&#9776;</span>
       </button>
       <div
-        className={classNames('collapse navbar-collapse', {
-          show: isOpen,
+        className={classNames('w-full md:flex md:w-auto', {
+          hidden: !isOpen,
         })}
       >
-        <ul className="navbar nav ml-auto">
-          <li className="nav-item">
-            <NavLink to="/" className="nav-link">
+        <ul className="flex flex-col md:ml-auto md:flex-row">
+          <li>
+            <NavLink to="/" className="block px-2 py-2">
               Home
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink to="/tasks" className="nav-link">
+          <li>
+            <NavLink to="/tasks" className="block px-2 py-2">
               Tasks
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink to="/base-effects" className="nav-link">
+          <li>
+            <NavLink to="/base-effects" className="block px-2 py-2">
               Effects
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink to="/dashboard" className="nav-link">
+          <li>
+            <NavLink to="/dashboard" className="block px-2 py-2">
               Dashboard
             </NavLink>
           </li>

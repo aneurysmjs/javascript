@@ -14,7 +14,7 @@ const config: Config = {
   },
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.(sc|c)ss$': '<rootDir>/config/jest/cssTransform.js',
+    '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
   },
   setupFilesAfterEnv: ['<rootDir>/config/jest/jestSetup.ts'],
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$'],

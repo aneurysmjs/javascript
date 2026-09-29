@@ -93,14 +93,14 @@ const StarWarsForm: FC = () => {
       <form>
         <input
           type="text"
-          className="form-control"
+          className="block w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-gray-900 focus:border-sky-400 focus:ring-4 focus:ring-sky-200 focus:outline-hidden"
           placeholder="type a name"
           onKeyDown={handleKeydown}
           name="starwarsName"
         />
       </form>
 
-      <div className="mt-3">
+      <div className="mt-4">
         {isRequestGoing ? (
           <div className="text-center" data-testid="loader">
             <FontAwesomeIcon icon={faSpinner} />
@@ -108,8 +108,8 @@ const StarWarsForm: FC = () => {
         ) : null}
         {characterNames.length
           ? characterNames.map((character) => (
-              <ul className="list-group mb-2" key={character.name} data-testid="character-card">
-                <li className="list-group-item">{character.name}</li>
+              <ul className="flex flex-col rounded-md border border-gray-200 mb-2" key={character.name} data-testid="character-card">
+                <li className="border-b border-gray-200 bg-white px-4 py-2 text-gray-900 last:border-b-0">{character.name}</li>
               </ul>
             ))
           : null}

@@ -9,7 +9,7 @@ const BaseEffectsPage: FunctionComponent = () => {
         effects
       </h2>
 
-      <div className="w-25 mx-auto">
+      <div className="w-1/4 mx-auto">
         <BaseEffects />
       </div>
     </section>

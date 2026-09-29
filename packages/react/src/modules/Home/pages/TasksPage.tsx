@@ -9,7 +9,7 @@ const TasksPage: FunctionComponent = () => {
         tasks
       </h2>
 
-      <div className="w-25 mx-auto">
+      <div className="w-1/4 mx-auto">
         <TaskList />
       </div>
     </section>

@@ -2,37 +2,37 @@
 import type { FunctionComponent } from 'react';
 
 const Footer: FunctionComponent = () => (
-  <footer className="container-fluid pt-4 border-top text-center">
-    <div className="row">
-      <div className="col-12 col-md">
+  <footer className="w-full px-3 pt-6 border-t text-center">
+    <div className="flex flex-wrap">
+      <div className="w-full md:flex-1">
         Playground
-        <small className="d-block mb-3 text-muted">&copy; {new Date().getFullYear()}</small>
+        <small className="block mb-4 text-gray-500">&copy; {new Date().getFullYear()}</small>
       </div>
-      <div className="col-6 col-md">
-        <h5>Some Links 1</h5>
-        <ul className="list-unstyled text-small">
+      <div className="w-1/2 md:flex-1">
+        <h5 className="mb-2 text-xl font-medium">Some Links 1</h5>
+        <ul className="text-sm">
           <li>
-            <a className="text-muted" href="#">
+            <a className="text-gray-500 hover:underline" href="#">
               Info 1
             </a>
           </li>
         </ul>
       </div>
-      <div className="col-6 col-md">
-        <h5>Some Links 2</h5>
-        <ul className="list-unstyled text-small">
+      <div className="w-1/2 md:flex-1">
+        <h5 className="mb-2 text-xl font-medium">Some Links 2</h5>
+        <ul className="text-sm">
           <li>
-            <a className="text-muted" href="#">
+            <a className="text-gray-500 hover:underline" href="#">
               Info 2
             </a>
           </li>
         </ul>
       </div>
-      <div className="col-6 col-md">
-        <h5>Some Links 3</h5>
-        <ul className="list-unstyled text-small">
+      <div className="w-1/2 md:flex-1">
+        <h5 className="mb-2 text-xl font-medium">Some Links 3</h5>
+        <ul className="text-sm">
           <li>
-            <a className="text-muted" href="#">
+            <a className="text-gray-500 hover:underline" href="#">
               Info 3
             </a>
           </li>

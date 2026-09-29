@@ -5,9 +5,9 @@ import Navbar from '@/components/common/Navbar';
 import Footer from '@/components/common/Footer';
 
 const Layout: FunctionComponent = () => (
-  <main className="d-flex flex-column vh-100">
+  <main className="flex flex-col h-screen">
     <Navbar />
-    <div className="flex-grow-1">{<Outlet />}</div>
+    <div className="grow">{<Outlet />}</div>
     <Footer />
   </main>
 );

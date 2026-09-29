@@ -32,7 +32,7 @@ const links = [
   },
 ];
 
-const navbarLinkClass = 'navbar-link focus:outline-none';
+const navbarLinkClass = 'navbar-link focus:outline-hidden';
 
 const Navbar: FunctionComponent = () => {
   const [isOpen, setOpen] = useState(false);

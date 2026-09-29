@@ -1,3 +1,5 @@
+@reference '../../../assets/css/styles.css';
+
 .navbar {
   @apply dark:bg-neutral-800
   container
@@ -10,7 +12,7 @@
 
   @apply border-b-2 border-b-gray-100  dark:border-slate-800;
 
-  @media screen(lg) {
+  @variant lg {
     @apply flex-row border-b-transparent border-b-0;
   }
 }
@@ -25,7 +27,7 @@
 
   flex-wrap: inherit;
 
-  @media screen(lg) {
+  @variant lg {
     @apply justify-end;
   }
 }
@@ -33,7 +35,7 @@
 .navbar-brand {
   @apply inline-block;
 
-  @media screen(lg) {
+  @variant lg {
     @apply hidden;
   }
 }
@@ -45,7 +47,7 @@
 .navbar__toggler {
   @apply inline-block;
 
-  @media screen(lg) {
+  @variant lg {
     @apply hidden;
   }
 }
@@ -53,7 +55,7 @@
 .navbar__actions {
   @apply flex items-center justify-between;
 
-  @media screen(lg) {
+  @variant lg {
     @apply order-2;
   }
 }
@@ -61,7 +63,7 @@
 .navbar__navigation {
   @apply flex flex-col;
 
-  @media screen(lg) {
+  @variant lg {
     @apply flex-row;
   }
 }
@@ -69,13 +71,13 @@
 .navbar__collapse {
   @apply basis-full flex mx-1;
 
-  @media screen(lg) {
-    @apply basis-auto flex !important;
+  @variant lg {
+    @apply basis-auto! flex!;
   }
 }
 
 .navbar__collapse--show {
-  @apply flex !important;
+  @apply flex!;
 }
 
 .collapsable:not(.navbar__collapse--show) {
@@ -85,7 +87,7 @@
 .navbar__menu {
   @apply flex flex-col mx-1;
 
-  @media screen(lg) {
+  @variant lg {
     @apply flex-row;
   }
 }
@@ -93,7 +95,7 @@
 .navbar-link {
   @apply text-theme p-2;
 
-  @media screen(lg) {
+  @variant lg {
     @apply flex-row;
   }
 }
@@ -101,7 +103,7 @@
 .navbar-link--active {
   @apply text-teal-500;
 
-  @media screen(lg) {
+  @variant lg {
     @apply text-theme;
   }
 
@@ -115,7 +117,7 @@
   transition: background 0.3s ease-in;
   @apply bg-transparent h-1 hidden;
 
-  @media screen(lg) {
+  @variant lg {
     @apply block;
   }
 }
@@ -126,7 +128,7 @@
 .navbar__theme {
   @apply p-2 flex justify-evenly items-center;
 
-  @media screen(lg) {
+  @variant lg {
     text-align: initial;
   }
 }
@@ -134,7 +136,7 @@
 .navbar__switch-theme {
   @apply text-theme inline;
 
-  @media screen(lg) {
+  @variant lg {
     @apply hidden;
   }
 }

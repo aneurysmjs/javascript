@@ -19,7 +19,7 @@ const BaseDeferredValue: FunctionComponent = () => {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="form-control mb-4"
+        className="block w-full rounded-md border border-gray-300 bg-white px-3 py-1.5 text-gray-900 focus:border-sky-400 focus:ring-4 focus:ring-sky-200 focus:outline-hidden mb-6"
         placeholder="Search..."
       />
 

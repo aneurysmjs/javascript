@@ -1,17 +1,38 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer utilities {
-  .text-theme {
-    @apply font-light text-gray-800 dark:text-white;
-  }
+@custom-variant dark (&:is(.dark *));
 
-  .text-link-theme {
-    @apply text-teal-500 dark:text-sky-400;
-  }
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
 
-  .bg-theme {
-    @apply bg-white dark:bg-gray-900;
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
+}
+
+@utility text-theme {
+  @apply font-light text-gray-800 dark:text-white;
+}
+
+@utility text-link-theme {
+  @apply text-teal-500 dark:text-sky-400;
+}
+
+@utility home-title {
+  @apply mb-2 text-center text-3xl font-medium text-[red];
+  @apply min-[576px]:text-[blue] min-[768px]:text-[green] min-[992px]:text-white;
+}
+
+@utility bg-theme {
+  @apply bg-white dark:bg-gray-900;
 }

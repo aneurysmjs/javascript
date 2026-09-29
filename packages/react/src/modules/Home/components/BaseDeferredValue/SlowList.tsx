@@ -7,7 +7,7 @@ const SlowItem = ({ text }: { text: string }) => {
     // Do nothing for 1 ms per item to emulate extremely slow code
   }
 
-  return <li className="list-group-item">Text: {text}</li>;
+  return <li className="border-b border-gray-200 bg-white px-4 py-2 text-gray-900 last:border-b-0">Text: {text}</li>;
 };
 
 const SlowList = memo(({ text }: { text: string }) => {
@@ -17,7 +17,7 @@ const SlowList = memo(({ text }: { text: string }) => {
     items.push(<SlowItem key={i} text={text} />);
   }
 
-  return <ul className="list-group">{items}</ul>;
+  return <ul className="flex flex-col rounded-md border border-gray-200">{items}</ul>;
 });
 
 export default SlowList;

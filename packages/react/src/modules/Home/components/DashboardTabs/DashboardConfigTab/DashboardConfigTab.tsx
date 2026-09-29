@@ -60,7 +60,7 @@ const DashboardConfigTab: FC = () => {
 
           <ul>
             {data.map((item) => (
-              <li className="mb-3" key={item.id} aria-label="config item">
+              <li className="mb-4" key={item.id} aria-label="config item">
                 {item.body}
               </li>
             ))}
