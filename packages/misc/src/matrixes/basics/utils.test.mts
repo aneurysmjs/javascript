@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createMatrix } from './utils.mts';
+import { createMatrix, getMatrixCorners } from './utils.mts';
 
 describe('createMatrix', () => {
   it('should create a matrix with the given dimensions and fill value', () => {
@@ -16,5 +16,20 @@ describe('createMatrix', () => {
       [0, 0],
       [0, 0],
     ]);
+  });
+});
+
+describe('getMatrixCorners', () => {
+  it('should return the four corners of the matrix', () => {
+    const matrix = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+    expect(getMatrixCorners(matrix)).toEqual([1, 3, 7, 9]);
+  });
+
+  it('should return an empty array for an empty matrix', () => {
+    expect(getMatrixCorners([])).toEqual([]);
   });
 });
